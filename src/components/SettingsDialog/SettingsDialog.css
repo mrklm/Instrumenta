@@ -1,0 +1,96 @@
+.settingsOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: start end;
+  padding: 78px 20px 20px;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.settingsDialog {
+  width: min(420px, 100%);
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--color-fg), transparent 62%);
+  border-radius: 8px;
+  background: var(--color-panel);
+  color: var(--color-fg);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.settingsHeader h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.settingsClose {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.settingsField {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  font-weight: 800;
+}
+
+.settingsField select {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--color-fg), transparent 65%);
+  border-radius: 6px;
+  background: var(--color-field);
+  color: var(--color-field-fg);
+  font: inherit;
+  font-weight: 700;
+}
+
+.settingsFieldset {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0 0;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-fg), transparent 68%);
+  border-radius: 8px;
+}
+
+.settingsFieldset legend {
+  padding: 0 5px;
+  font-weight: 800;
+}
+
+.settingsFieldset label {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.settingsFieldset input {
+  accent-color: var(--color-accent);
+}
+
+@media (max-width: 680px) {
+  .settingsOverlay {
+    place-items: start stretch;
+    padding: 70px 10px 10px;
+  }
+}

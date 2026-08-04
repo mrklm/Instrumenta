@@ -1,0 +1,60 @@
+.tablaturePanel {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, var(--color-fg), transparent 68%);
+  border-radius: 8px;
+  background: var(--color-panel);
+}
+
+.tablatureSvg {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+}
+
+.tabStringName {
+  fill: var(--color-fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tabLine {
+  stroke: color-mix(in srgb, var(--color-fg), transparent 18%);
+  stroke-width: 2;
+}
+
+.beatLine {
+  stroke: color-mix(in srgb, var(--color-fg), transparent 78%);
+  stroke-width: 1;
+}
+
+.measureLine {
+  stroke: color-mix(in srgb, var(--color-fg), transparent 48%);
+  stroke-width: 2;
+}
+
+.tabNote rect {
+  fill: var(--color-field);
+  stroke: transparent;
+}
+
+.tabNote text {
+  fill: var(--color-field-fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.tabNote.active rect {
+  fill: var(--color-accent);
+  stroke: var(--color-bg);
+  stroke-width: 2;
+}
+
+.playhead {
+  stroke: var(--color-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
