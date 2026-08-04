@@ -4,9 +4,7 @@
 
 # Instrumenta
 
-Instrumenta est une application pédagogique musicale en TypeScript dédiée à l'apprentissage instrumental. Pour l'instant, le développement se concentre sur la partie basse : lecture d'exercices, visualisation du manche, tablature synchronisée et repérage précis des cases à jouer.
-
-L'ambition du projet est de devenir une application multi-instruments, capable de donner des notions progressives pour la basse, la guitare, le piano, la batterie et le scratch.
+Instrumenta est une application pédagogique musicale en TypeScript dédiée à l'apprentissage instrumental. La première version se concentre sur la basse : lecture d'exercices, visualisation du manche, tablature synchronisée et repérage précis des cases à jouer. À terme, l'application a vocation à s'ouvrir à d'autres instruments, comme la guitare, le piano, la batterie et le scratch.
 
 > **Statut du projet : application en phase de développement.**
 >
@@ -20,7 +18,7 @@ Le but d'Instrumenta est d'aider les musiciennes et musiciens à relier trois in
 - sa position exacte sur le manche ;
 - sa lecture dans une tablature simple.
 
-L'application cherche à rendre l'apprentissage plus visuel, plus progressif et plus concret, en particulier pour les débutants qui doivent encore construire leurs repères sur le manche.
+L'application cherche à rendre l'apprentissage plus visuel, plus progressif et plus concret, en particulier pour les débutants qui construisent encore leurs repères sur l'instrument.
 
 ## Fonctionnalités Actuelles
 
@@ -38,10 +36,10 @@ L'application cherche à rendre l'apprentissage plus visuel, plus progressif et 
 
 ## Ambitions
 
-Instrumenta a vocation à devenir un outil pédagogique plus complet, capable d'accompagner progressivement le travail musical sur plusieurs instruments :
+Instrumenta a vocation à devenir un outil pédagogique plus complet, capable d'accompagner progressivement le travail musical :
 
 - enrichir la bibliothèque d'exercices ;
-- ajouter des modules pour la guitare, le piano, la batterie et le scratch ;
+- ajouter des modules pour d'autres instruments ;
 - améliorer la précision visuelle des placements ;
 - proposer des parcours d'apprentissage ;
 - intégrer des exercices de rythme, de lecture et de mémorisation ;
