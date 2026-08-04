@@ -4,7 +4,9 @@
 
 # Instrumenta
 
-Instrumenta est une application pédagogique musicale en TypeScript dédiée à l'apprentissage instrumental. La première version se concentre sur la basse : lecture d'exercices, visualisation du manche, tablature synchronisée et repérage précis des cases à jouer.
+Instrumenta est une application pédagogique musicale en TypeScript dédiée à l'apprentissage instrumental. Pour l'instant, le développement se concentre sur la partie basse : lecture d'exercices, visualisation du manche, tablature synchronisée et repérage précis des cases à jouer.
+
+L'ambition du projet est de devenir une application multi-instruments, capable de donner des notions progressives pour la basse, la guitare, le piano, la batterie et le scratch.
 
 > **Statut du projet : application en phase de développement.**
 >
@@ -36,10 +38,10 @@ L'application cherche à rendre l'apprentissage plus visuel, plus progressif et 
 
 ## Ambitions
 
-Instrumenta a vocation à devenir un outil pédagogique plus complet, capable d'accompagner progressivement le travail musical :
+Instrumenta a vocation à devenir un outil pédagogique plus complet, capable d'accompagner progressivement le travail musical sur plusieurs instruments :
 
 - enrichir la bibliothèque d'exercices ;
-- ajouter d'autres instruments ;
+- ajouter des modules pour la guitare, le piano, la batterie et le scratch ;
 - améliorer la précision visuelle des placements ;
 - proposer des parcours d'apprentissage ;
 - intégrer des exercices de rythme, de lecture et de mémorisation ;
