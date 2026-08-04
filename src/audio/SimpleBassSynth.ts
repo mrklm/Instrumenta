@@ -6,15 +6,19 @@ import type { AudioEngine } from "./AudioEngine";
 interface PlayingVoice {
   oscillator: OscillatorNode;
   filter: BiquadFilterNode;
-  shaper: WaveShaperNode;
+  driveShaper: WaveShaperNode;
+  distortionShaper: WaveShaperNode;
   gain: GainNode;
 }
 
 interface EffectNodes {
-  input: GainNode;
+  master: GainNode;
+  dry: GainNode;
+  delaySend: GainNode;
   delay: DelayNode;
   delayFeedback: GainNode;
   delayWet: GainNode;
+  reverbSend: GainNode;
   reverb: ConvolverNode;
   reverbWet: GainNode;
 }
@@ -44,7 +48,9 @@ export class SimpleBassSynth implements AudioEngine {
 
     for (const voice of this.voices.values()) {
       voice.filter.frequency.setTargetAtTime(this.getToneFrequency(), now, 0.02);
-      voice.shaper.curve = this.createDriveCurve();
+      voice.filter.Q.setTargetAtTime(this.getFilterQ(), now, 0.02);
+      voice.driveShaper.curve = this.createDriveCurve();
+      voice.distortionShaper.curve = this.createDistortionCurve();
       voice.oscillator.type = this.getOscillatorType();
     }
   }
@@ -57,7 +63,8 @@ export class SimpleBassSynth implements AudioEngine {
     const context = this.getContext();
     const oscillator = context.createOscillator();
     const filter = context.createBiquadFilter();
-    const shaper = context.createWaveShaper();
+    const driveShaper = context.createWaveShaper();
+    const distortionShaper = context.createWaveShaper();
     const gain = context.createGain();
     const now = context.currentTime;
     const velocity = event.velocity ?? 0.74;
@@ -67,9 +74,11 @@ export class SimpleBassSynth implements AudioEngine {
     oscillator.frequency.setValueAtTime(midiNoteToFrequency(event.midiNote), now);
     filter.type = "lowpass";
     filter.frequency.setValueAtTime(this.getToneFrequency(), now);
-    filter.Q.setValueAtTime(0.75 + this.settings.drive / 80, now);
-    shaper.curve = this.createDriveCurve();
-    shaper.oversample = "2x";
+    filter.Q.setValueAtTime(this.getFilterQ(), now);
+    driveShaper.curve = this.createDriveCurve();
+    driveShaper.oversample = "2x";
+    distortionShaper.curve = this.createDistortionCurve();
+    distortionShaper.oversample = "4x";
     gain.gain.setValueAtTime(0.0001, now);
     gain.gain.exponentialRampToValueAtTime(
       this.getOutputGain() * velocity,
@@ -80,13 +89,20 @@ export class SimpleBassSynth implements AudioEngine {
       now + 0.16,
     );
 
-    oscillator.connect(shaper);
-    shaper.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.getEffectNodes(context).input);
+    oscillator.connect(driveShaper);
+    driveShaper.connect(filter);
+    filter.connect(distortionShaper);
+    distortionShaper.connect(gain);
+    gain.connect(this.getEffectNodes(context).master);
     oscillator.start(now);
 
-    this.voices.set(event.id, { oscillator, filter, shaper, gain });
+    this.voices.set(event.id, {
+      oscillator,
+      filter,
+      driveShaper,
+      distortionShaper,
+      gain,
+    });
   }
 
   public stopNote(eventId: string): void {
@@ -145,6 +161,10 @@ export class SimpleBassSynth implements AudioEngine {
     return 0.045 + this.settings.volume * 0.0017;
   }
 
+  private getFilterQ(): number {
+    return 0.7 + this.settings.drive / 120;
+  }
+
   private getOscillatorType(): OscillatorType {
     if (this.settings.tone <= 14 && this.settings.drive <= 8) {
       return "triangle";
@@ -162,12 +182,27 @@ export class SimpleBassSynth implements AudioEngine {
     const curve = new Float32Array(
       new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT),
     );
-    const amount =
-      1 + this.settings.drive * 0.18 + this.settings.distortion * 0.46;
+    const amount = 1 + this.settings.drive * 0.2;
 
     for (let index = 0; index < samples; index += 1) {
       const x = (index * 2) / samples - 1;
       curve[index] = ((1 + amount) * x) / (1 + amount * Math.abs(x));
+    }
+
+    return curve;
+  }
+
+  private createDistortionCurve(): Float32Array<ArrayBuffer> {
+    const samples = 256;
+    const curve = new Float32Array(
+      new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT),
+    );
+    const amount = this.settings.distortion / 100;
+
+    for (let index = 0; index < samples; index += 1) {
+      const x = (index * 2) / samples - 1;
+      const saturated = Math.tanh(x * (1 + amount * 30));
+      curve[index] = x * (1 - amount) + saturated * amount;
     }
 
     return curve;
@@ -182,34 +217,47 @@ export class SimpleBassSynth implements AudioEngine {
   }
 
   private createEffectNodes(context: AudioContext): EffectNodes {
-    const input = context.createGain();
+    const master = context.createGain();
+    const dry = context.createGain();
+    const delaySend = context.createGain();
     const delay = context.createDelay(0.75);
     const delayFeedback = context.createGain();
     const delayWet = context.createGain();
+    const reverbSend = context.createGain();
     const reverb = context.createConvolver();
     const reverbWet = context.createGain();
 
-    input.gain.value = 1;
+    master.gain.value = 1;
+    dry.gain.value = 1;
+    delaySend.gain.value = 0;
     delayFeedback.gain.value = 0;
     delayWet.gain.value = 0;
+    reverbSend.gain.value = 0;
     reverbWet.gain.value = 0;
     delay.delayTime.value = 0.14;
     reverb.buffer = this.createReverbImpulse(context);
-    input.connect(context.destination);
-    input.connect(delay);
-    input.connect(reverb);
+
+    master.connect(dry);
+    dry.connect(context.destination);
+    master.connect(delaySend);
+    delaySend.connect(delay);
     delay.connect(delayFeedback);
     delayFeedback.connect(delay);
     delay.connect(delayWet);
     delayWet.connect(context.destination);
+    master.connect(reverbSend);
+    reverbSend.connect(reverb);
     reverb.connect(reverbWet);
     reverbWet.connect(context.destination);
 
     return {
-      input,
+      master,
+      dry,
+      delaySend,
       delay,
       delayFeedback,
       delayWet,
+      reverbSend,
       reverb,
       reverbWet,
     };
@@ -222,26 +270,41 @@ export class SimpleBassSynth implements AudioEngine {
 
     const delayAmount = this.settings.delay / 100;
     const reverbAmount = this.settings.reverb / 100;
+    const effectDucking = Math.min(
+      delayAmount * 0.12 + reverbAmount * 0.22,
+      0.32,
+    );
 
-    this.effectNodes.delay.delayTime.setTargetAtTime(
-      0.09 + delayAmount * 0.28,
+    this.effectNodes.dry.gain.setTargetAtTime(1 - effectDucking, now, 0.025);
+    this.effectNodes.delaySend.gain.setTargetAtTime(
+      delayAmount * 0.85,
       now,
-      0.04,
+      0.025,
+    );
+    this.effectNodes.delay.delayTime.setTargetAtTime(
+      0.12 + delayAmount * 0.34,
+      now,
+      0.025,
     );
     this.effectNodes.delayFeedback.gain.setTargetAtTime(
-      delayAmount * 0.28,
+      delayAmount * 0.42,
       now,
-      0.04,
+      0.025,
     );
     this.effectNodes.delayWet.gain.setTargetAtTime(
-      delayAmount * 0.18,
+      delayAmount * 0.48,
       now,
-      0.04,
+      0.025,
+    );
+    this.effectNodes.reverbSend.gain.setTargetAtTime(
+      reverbAmount * 1.45,
+      now,
+      0.025,
     );
     this.effectNodes.reverbWet.gain.setTargetAtTime(
-      reverbAmount * 0.16,
+      reverbAmount * 0.85,
       now,
-      0.04,
+      0.025,
     );
   }
 
@@ -251,16 +314,21 @@ export class SimpleBassSynth implements AudioEngine {
     }
 
     const now = this.audioContext.currentTime;
+    this.effectNodes.delaySend.gain.cancelScheduledValues(now);
     this.effectNodes.delayFeedback.gain.cancelScheduledValues(now);
     this.effectNodes.delayWet.gain.cancelScheduledValues(now);
+    this.effectNodes.reverbSend.gain.cancelScheduledValues(now);
     this.effectNodes.reverbWet.gain.cancelScheduledValues(now);
+    this.effectNodes.dry.gain.setValueAtTime(1, now);
+    this.effectNodes.delaySend.gain.setValueAtTime(0, now);
     this.effectNodes.delayFeedback.gain.setValueAtTime(0, now);
     this.effectNodes.delayWet.gain.setValueAtTime(0, now);
+    this.effectNodes.reverbSend.gain.setValueAtTime(0, now);
     this.effectNodes.reverbWet.gain.setValueAtTime(0, now);
   }
 
   private createReverbImpulse(context: AudioContext): AudioBuffer {
-    const duration = 0.85;
+    const duration = 4.6;
     const length = Math.floor(context.sampleRate * duration);
     const impulse = context.createBuffer(2, length, context.sampleRate);
 
@@ -269,7 +337,12 @@ export class SimpleBassSynth implements AudioEngine {
 
       for (let index = 0; index < length; index += 1) {
         const progress = index / length;
-        data[index] = (Math.random() * 2 - 1) * (1 - progress) ** 2.4;
+        const earlyReflection = Math.sin(index * 0.013 + channel) * 0.18;
+        const wideTail = Math.random() * 2 - 1;
+        data[index] =
+          (wideTail + earlyReflection) *
+          (1 - progress) ** 1.18 *
+          (channel === 0 ? 1 : -0.96);
       }
     }
 

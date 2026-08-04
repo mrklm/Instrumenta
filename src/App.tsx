@@ -155,7 +155,9 @@ function App() {
       event.preventDefault();
 
       if (playbackEngineRef.current.getSnapshot().status === "playing") {
-        setSnapshot(playbackEngineRef.current.pause());
+        synth.stopAll();
+        activeSoundIdsRef.current.clear();
+        setSnapshot(playbackEngineRef.current.stop());
       } else {
         setSnapshot(playbackEngineRef.current.play());
       }
@@ -163,7 +165,7 @@ function App() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [synth]);
 
   const selectExercise = (nextIndex: number) => {
     const normalizedIndex =

@@ -2,6 +2,14 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.5.1] - 2026-08-05
+
+### Modifié
+- Réorganisation des contrôles avec tempo et transport en colonne à gauche.
+- Simplification des mains affichées autour du titre.
+- Amélioration de la chaîne audio et des effets `Disto`, `Delay` et `Reverb`.
+- Raccourci `Espace` dédié à l'action lecture/stop.
+
 ## [1.5.0] - 2026-08-05
 
 ### Ajouté
