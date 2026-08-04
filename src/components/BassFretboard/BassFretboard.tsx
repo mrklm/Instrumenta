@@ -1,6 +1,7 @@
 import type { BassNoteEvent, Handedness } from "../../types/music";
 import { DEFAULT_VISUAL_STRING_ORDER } from "../../music/bassTuning";
-import { getFretCenterX, getFretX, getStringY } from "../../music/fretboardUtils";
+import rightFretboardImage from "../../../assets/basse droitier.png";
+import leftFretboardImage from "../../../assets/basse gaucher.png";
 import "./BassFretboard.css";
 
 interface BassFretboardProps {
@@ -9,16 +10,19 @@ interface BassFretboardProps {
   fretCount: number;
 }
 
-const WIDTH = 920;
-const HEIGHT = 240;
-const PADDING_X = 58;
-const PADDING_Y = 46;
-const MARKER_FRETS = [3, 5, 7, 9, 12] as const;
-const STRING_WIDTHS = {
-  E: 4.8,
-  A: 4,
-  D: 3.2,
-  G: 2.4,
+const WIDTH = 1758;
+const IMAGE_HEIGHT = 895;
+const VIEWBOX_Y = 230;
+const VIEWBOX_HEIGHT = 430;
+const RIGHT_HANDED_NUT_X = 452;
+const RIGHT_HANDED_TWELFTH_FRET_X = 1422;
+const LEFT_HANDED_NUT_X = 1288;
+const LEFT_HANDED_TWELFTH_FRET_X = 318;
+const PHOTO_STRING_Y = {
+  G: 421,
+  D: 450,
+  A: 479,
+  E: 508,
 } as const;
 
 export function BassFretboard({
@@ -27,88 +31,55 @@ export function BassFretboard({
   fretCount,
 }: BassFretboardProps) {
   const frets = Array.from({ length: fretCount + 1 }, (_, fret) => fret);
+  const fretboardImage =
+    handedness === "right" ? rightFretboardImage : leftFretboardImage;
 
   return (
     <section className="fretboardPanel" aria-label="Manche de basse">
-      <svg className="fretboardSvg" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img">
-        <rect
-          className="fretboardWood"
-          x={PADDING_X}
-          y={PADDING_Y - 26}
-          width={WIDTH - PADDING_X * 2}
-          height={HEIGHT - PADDING_Y * 2 + 52}
-          rx="6"
+      <svg
+        className="fretboardSvg"
+        viewBox={`0 ${VIEWBOX_Y} ${WIDTH} ${VIEWBOX_HEIGHT}`}
+        role="img"
+      >
+        <image
+          className="fretboardPhoto"
+          href={fretboardImage}
+          x="0"
+          y="0"
+          width={WIDTH}
+          height={IMAGE_HEIGHT}
+          preserveAspectRatio="xMidYMid meet"
         />
 
-        {MARKER_FRETS.map((fret) => {
-          const x = getFretCenterX(fret, fretCount, WIDTH, handedness, PADDING_X);
-          const yCenter = HEIGHT / 2;
-          const markerYs = fret === 12 ? [yCenter - 28, yCenter + 28] : [yCenter];
-
-          return markerYs.map((y) => (
-            <circle
-              key={`${fret}-${y}`}
-              className="fretMarker"
-              cx={x}
-              cy={y}
-              r="8"
-            />
-          ));
-        })}
-
         {frets.map((fret) => {
-          const x = getFretX(fret, fretCount, WIDTH, handedness, PADDING_X);
+          const x = getFretLabelX(fret, handedness);
           return (
-            <g key={fret}>
-              <line
-                className={fret === 0 ? "nutLine" : "fretLine"}
-                x1={x}
-                x2={x}
-                y1={PADDING_Y - 24}
-                y2={HEIGHT - PADDING_Y + 24}
-              />
-              <text className="fretNumber" x={x} y={24} textAnchor="middle">
-                {fret}
-              </text>
-            </g>
+            <text key={fret} className="fretNumber" x={x} y={390} textAnchor="middle">
+              {fret}
+            </text>
           );
         })}
 
         {DEFAULT_VISUAL_STRING_ORDER.map((string) => {
-          const y = getStringY(string, DEFAULT_VISUAL_STRING_ORDER, HEIGHT, PADDING_Y);
+          const y = PHOTO_STRING_Y[string];
+          const x = handedness === "right" ? 418 : WIDTH - 418;
           return (
-            <g key={string}>
-              <text className="stringName" x={24} y={y + 5}>
-                {string}
-              </text>
-              <line
-                className="bassString"
-                x1={PADDING_X}
-                x2={WIDTH - PADDING_X}
-                y1={y}
-                y2={y}
-                strokeWidth={STRING_WIDTHS[string]}
-              />
-            </g>
+            <text key={string} className="stringName" x={x} y={y + 6}>
+              {string}
+            </text>
           );
         })}
 
         {activeNotes.map((note) => {
-          const x = getFretCenterX(
-            note.fret,
-            fretCount,
-            WIDTH,
-            handedness,
-            PADDING_X,
-          );
-          const y = getStringY(note.string, DEFAULT_VISUAL_STRING_ORDER, HEIGHT, PADDING_Y);
+          const x = getPhotoFretCenterX(note.fret, handedness);
+          const y = PHOTO_STRING_Y[note.string];
           const label = note.fret === 0 ? "0" : String(note.fret);
           return (
             <g key={note.id} className="activeFret">
               {note.fret === 0 ? (
-                <rect x={x - 19} y={y - 19} width="38" height="38" rx="4" />
+                <rect x={x - 20} y={y - 20} width="40" height="40" rx="5" />
               ) : (
-                <circle cx={x} cy={y} r="20" />
+                <circle cx={x} cy={y} r="22" />
               )}
               <text x={x} y={y + 6} textAnchor="middle">
                 {label}
@@ -119,4 +90,39 @@ export function BassFretboard({
       </svg>
     </section>
   );
+}
+
+function getPhotoFretX(fret: number, handedness: Handedness): number {
+  const safeFret = Math.min(Math.max(Math.round(fret), 0), 12);
+  const fretDistanceRatio = 1 - Math.pow(2, -safeFret / 12);
+
+  if (handedness === "right") {
+    const scaleLength =
+      (RIGHT_HANDED_TWELFTH_FRET_X - RIGHT_HANDED_NUT_X) / 0.5;
+    return RIGHT_HANDED_NUT_X + scaleLength * fretDistanceRatio;
+  }
+
+  const scaleLength =
+    (LEFT_HANDED_NUT_X - LEFT_HANDED_TWELFTH_FRET_X) / 0.5;
+  return LEFT_HANDED_NUT_X - scaleLength * fretDistanceRatio;
+}
+
+function getFretLabelX(fret: number, handedness: Handedness): number {
+  if (fret === 0) {
+    const nutX = getPhotoFretX(0, handedness);
+    return handedness === "right" ? nutX - 34 : nutX + 34;
+  }
+
+  return getPhotoFretCenterX(fret, handedness);
+}
+
+function getPhotoFretCenterX(fret: number, handedness: Handedness): number {
+  if (fret === 0) {
+    const nutX = getPhotoFretX(0, handedness);
+    return handedness === "right" ? nutX - 34 : nutX + 34;
+  }
+
+  const previous = getPhotoFretX(fret - 1, handedness);
+  const current = getPhotoFretX(fret, handedness);
+  return (previous + current) / 2;
 }

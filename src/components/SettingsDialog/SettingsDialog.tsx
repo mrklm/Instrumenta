@@ -1,4 +1,9 @@
 import type { Handedness } from "../../types/music";
+import {
+  getHandSkinById,
+  HAND_SKINS,
+  type HandSkinId,
+} from "../../assets/handSkins";
 import { THEME_NAMES, type ThemeName } from "../../theme/themes";
 import "./SettingsDialog.css";
 
@@ -7,10 +12,12 @@ type Instrument = "bass";
 interface SettingsDialogProps {
   isOpen: boolean;
   themeName: ThemeName;
+  handSkinId: HandSkinId;
   handedness: Handedness;
   instrument: Instrument;
   onClose: () => void;
   onThemeChange: (themeName: ThemeName) => void;
+  onHandSkinChange: (handSkinId: HandSkinId) => void;
   onHandednessChange: (handedness: Handedness) => void;
   onInstrumentChange: (instrument: Instrument) => void;
 }
@@ -18,16 +25,20 @@ interface SettingsDialogProps {
 export function SettingsDialog({
   isOpen,
   themeName,
+  handSkinId,
   handedness,
   instrument,
   onClose,
   onThemeChange,
+  onHandSkinChange,
   onHandednessChange,
   onInstrumentChange,
 }: SettingsDialogProps) {
   if (!isOpen) {
     return null;
   }
+
+  const selectedHandSkin = getHandSkinById(handSkinId);
 
   return (
     <div className="settingsOverlay" role="presentation" onMouseDown={onClose}>
@@ -72,6 +83,31 @@ export function SettingsDialog({
             <option value="bass">Basse</option>
           </select>
         </label>
+
+        <label className="settingsField">
+          <span>Teinte des mains</span>
+          <select
+            value={handSkinId}
+            onChange={(event) =>
+              onHandSkinChange(event.currentTarget.value as HandSkinId)
+            }
+          >
+            {HAND_SKINS.map((skin) => (
+              <option key={skin.id} value={skin.id}>
+                {skin.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <div className="handSkinPreview" aria-label="Aperçu des mains">
+          <figure aria-label="Main gauche">
+            <img src={selectedHandSkin.leftImage} alt="" />
+          </figure>
+          <figure aria-label="Main droite">
+            <img src={selectedHandSkin.rightImage} alt="" />
+          </figure>
+        </div>
 
         <fieldset className="settingsFieldset">
           <legend>Orientation</legend>

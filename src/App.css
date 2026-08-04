@@ -17,8 +17,8 @@
 
 .menuTitle {
   display: inline-flex;
-  gap: 8px;
-  align-items: baseline;
+  gap: 10px;
+  align-items: center;
   justify-content: center;
   color: var(--color-fg);
   font-size: 1.55rem;
@@ -27,10 +27,39 @@
   text-align: center;
 }
 
+.brandTitle {
+  line-height: 1;
+}
+
 .menuTitle small {
   color: color-mix(in srgb, var(--color-fg), transparent 30%);
   font-size: 0.7rem;
   font-weight: 900;
+}
+
+.handModeButton {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.76;
+}
+
+.handModeButton.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px var(--color-accent));
+}
+
+.handModeButton img {
+  display: block;
+  width: 54px;
+  height: 48px;
+  object-fit: contain;
 }
 
 .menuButton {
@@ -160,7 +189,22 @@ h1 {
   }
 
   .menuTitle {
-    font-size: 1.25rem;
+    gap: 7px;
+    font-size: 1.15rem;
+  }
+
+  .handModeButton {
+    width: 38px;
+    height: 36px;
+  }
+
+  .handModeButton img {
+    width: 36px;
+    height: 34px;
+  }
+
+  .menuTitle small {
+    font-size: 0.6rem;
   }
 
   .appShell {

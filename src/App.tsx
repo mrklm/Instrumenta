@@ -5,6 +5,11 @@ import {
   type BassSoundSettings,
 } from "./audio/bassSoundPresets";
 import { APP_VERSION } from "./appVersion";
+import {
+  DEFAULT_HAND_SKIN_ID,
+  getHandSkinById,
+  type HandSkinId,
+} from "./assets/handSkins";
 import { SimpleBassSynth } from "./audio/SimpleBassSynth";
 import { BassFretboard } from "./components/BassFretboard/BassFretboard";
 import { BassSoundControls } from "./components/BassSoundControls/BassSoundControls";
@@ -35,6 +40,8 @@ function App() {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [handedness, setHandedness] = useState<Handedness>("right");
   const [themeName, setThemeName] = useState<ThemeName>(DEFAULT_THEME_NAME);
+  const [handSkinId, setHandSkinId] =
+    useState<HandSkinId>(DEFAULT_HAND_SKIN_ID);
   const [instrument, setInstrument] = useState<Instrument>("bass");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [bassSoundPresetIndex, setBassSoundPresetIndex] = useState(
@@ -45,6 +52,7 @@ function App() {
       BASS_SOUND_PRESETS[DEFAULT_BASS_SOUND_PRESET_INDEX].settings,
     );
   const theme = THEMES[themeName];
+  const handSkin = getHandSkinById(handSkinId);
   const themeStyle = {
     "--color-bg": theme.BG,
     "--color-panel": theme.PANEL,
@@ -181,8 +189,30 @@ function App() {
       <nav className="menuBar" aria-label="Menu principal">
         <div className="menuSpacer" />
         <div className="menuTitle">
-          <span>Instrumenta</span>
+          <button
+            type="button"
+            className={
+              handedness === "left" ? "handModeButton active" : "handModeButton"
+            }
+            aria-label="Passer en mode main gauche"
+            title="Mode gaucher"
+            onClick={() => setHandedness("left")}
+          >
+            <img src={handSkin.leftImage} alt="" />
+          </button>
+          <span className="brandTitle">Instrumenta</span>
           <small>v{APP_VERSION}</small>
+          <button
+            type="button"
+            className={
+              handedness === "right" ? "handModeButton active" : "handModeButton"
+            }
+            aria-label="Passer en mode main droite"
+            title="Mode droitier"
+            onClick={() => setHandedness("right")}
+          >
+            <img src={handSkin.rightImage} alt="" />
+          </button>
         </div>
         <button
           type="button"
@@ -257,10 +287,12 @@ function App() {
       <SettingsDialog
         isOpen={isSettingsOpen}
         themeName={themeName}
+        handSkinId={handSkinId}
         handedness={handedness}
         instrument={instrument}
         onClose={() => setIsSettingsOpen(false)}
         onThemeChange={setThemeName}
+        onHandSkinChange={setHandSkinId}
         onHandednessChange={setHandedness}
         onInstrumentChange={setInstrument}
       />

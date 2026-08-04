@@ -6,40 +6,23 @@
 .fretboardSvg {
   display: block;
   width: 100%;
-  min-width: 620px;
+  min-width: 760px;
   height: auto;
 }
 
-.fretboardWood {
-  fill: var(--color-panel);
-}
-
-.fretMarker {
-  fill: color-mix(in srgb, var(--color-accent), var(--color-field) 45%);
-}
-
-.fretLine {
-  stroke: color-mix(in srgb, var(--color-fg), transparent 55%);
-  stroke-width: 2;
-}
-
-.nutLine {
-  stroke: var(--color-fg);
-  stroke-width: 8;
-}
-
-.bassString {
-  stroke: color-mix(in srgb, var(--color-fg), white 18%);
-  stroke-linecap: round;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45));
+.fretboardPhoto {
+  pointer-events: none;
 }
 
 .fretNumber,
 .stringName {
-  fill: var(--color-fg);
+  fill: #ffffff;
   font-family: ui-sans-serif, system-ui, sans-serif;
   font-size: 18px;
   font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.72);
+  stroke-width: 4px;
 }
 
 .stringName {
