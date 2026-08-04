@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/instrumenta.png" alt="Instrumenta" width="180">
+  <img src="assets/instrumenta.png" alt="Instrumenta" width="360">
 </p>
 
 # Instrumenta
