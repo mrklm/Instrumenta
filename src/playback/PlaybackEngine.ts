@@ -73,6 +73,14 @@ export class PlaybackEngine {
     return this.getSnapshot();
   }
 
+  public playFromStart(): PlaybackSnapshot {
+    this.currentBeat = 0;
+    this.pausedBeat = 0;
+    this.startedAtMs = this.now();
+    this.status = "playing";
+    return this.getSnapshot();
+  }
+
   public pause(): PlaybackSnapshot {
     this.updateCurrentBeat();
     this.pausedBeat = this.currentBeat;

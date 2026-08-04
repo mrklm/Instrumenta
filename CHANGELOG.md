@@ -2,6 +2,14 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.4.0] - 2026-08-04
+
+### Ajouté
+- Raccourci clavier `Espace` pour lecture/pause.
+
+### Modifié
+- Changement d'exercice plus fluide pendant la lecture, avec enchaînement immédiat du nouvel exercice.
+
 ## [1.3.0] - 2026-08-04
 
 ### Ajouté

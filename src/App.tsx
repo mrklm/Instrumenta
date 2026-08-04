@@ -157,12 +157,33 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code !== "Space" || shouldIgnorePlaybackShortcut(event.target)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (playbackEngineRef.current.getSnapshot().status === "playing") {
+        setSnapshot(playbackEngineRef.current.pause());
+      } else {
+        setSnapshot(playbackEngineRef.current.play());
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const selectExercise = (nextIndex: number) => {
     const normalizedIndex =
       (nextIndex + bassExercises.length) % bassExercises.length;
     const nextExercise = bassExercises[normalizedIndex];
+    const wasPlaying =
+      playbackEngineRef.current.getSnapshot().status === "playing";
 
-    synth.stopAll();
+    synth.releaseAll();
     activeSoundIdsRef.current.clear();
     setExerciseIndex(normalizedIndex);
     setTempo(nextExercise.tempo);
@@ -172,7 +193,11 @@ function App() {
       tempo: nextExercise.tempo,
       loop: nextExercise.loop,
     });
-    setSnapshot(playbackEngineRef.current.getSnapshot());
+    setSnapshot(
+      wasPlaying
+        ? playbackEngineRef.current.playFromStart()
+        : playbackEngineRef.current.getSnapshot(),
+    );
   };
 
   const selectBassSoundPreset = (nextIndex: number) => {
@@ -301,3 +326,17 @@ function App() {
 }
 
 export default App;
+
+function shouldIgnorePlaybackShortcut(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) {
+    return false;
+  }
+
+  const tagName = target.tagName.toLowerCase();
+  return (
+    tagName === "input" ||
+    tagName === "select" ||
+    tagName === "textarea" ||
+    target.isContentEditable
+  );
+}

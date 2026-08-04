@@ -94,6 +94,20 @@ export class SimpleBassSynth implements AudioEngine {
     }
   }
 
+  public releaseAll(): void {
+    for (const voice of this.voices.values()) {
+      if (this.audioContext) {
+        const now = this.audioContext.currentTime;
+        voice.gain.gain.cancelScheduledValues(now);
+        voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0.0001), now);
+        voice.gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+        voice.oscillator.stop(now + 0.04);
+      }
+    }
+
+    this.voices.clear();
+  }
+
   private getContext(): AudioContext {
     if (this.audioContext) {
       return this.audioContext;

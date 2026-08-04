@@ -64,4 +64,20 @@ describe("PlaybackEngine", () => {
     expect(snapshot.currentBeat).toBeCloseTo(1.25);
     expect(snapshot.status).toBe("playing");
   });
+
+  it("peut lancer un nouvel exercice depuis le debut", () => {
+    let now = 0;
+    const engine = new PlaybackEngine({
+      exercise: exercise01,
+      tempo: 60,
+      loop: true,
+      now: () => now,
+    });
+
+    now = 4000;
+    const snapshot = engine.playFromStart();
+
+    expect(snapshot.currentBeat).toBe(0);
+    expect(snapshot.status).toBe("playing");
+  });
 });
