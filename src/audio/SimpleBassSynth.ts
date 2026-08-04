@@ -10,13 +10,26 @@ interface PlayingVoice {
   gain: GainNode;
 }
 
+interface EffectNodes {
+  input: GainNode;
+  delay: DelayNode;
+  delayFeedback: GainNode;
+  delayWet: GainNode;
+  reverb: ConvolverNode;
+  reverbWet: GainNode;
+}
+
 export class SimpleBassSynth implements AudioEngine {
   private audioContext: AudioContext | null = null;
+  private effectNodes: EffectNodes | null = null;
   private readonly voices = new Map<string, PlayingVoice>();
   private settings: BassSoundSettings = {
     volume: 72,
     tone: 38,
     drive: 10,
+    distortion: 0,
+    delay: 0,
+    reverb: 0,
   };
 
   public setSettings(settings: BassSoundSettings): void {
@@ -27,6 +40,8 @@ export class SimpleBassSynth implements AudioEngine {
     }
 
     const now = this.audioContext.currentTime;
+    this.updateEffectNodes(now);
+
     for (const voice of this.voices.values()) {
       voice.filter.frequency.setTargetAtTime(this.getToneFrequency(), now, 0.02);
       voice.shaper.curve = this.createDriveCurve();
@@ -47,6 +62,7 @@ export class SimpleBassSynth implements AudioEngine {
     const now = context.currentTime;
     const velocity = event.velocity ?? 0.74;
 
+    this.updateEffectNodes(now);
     oscillator.type = this.getOscillatorType();
     oscillator.frequency.setValueAtTime(midiNoteToFrequency(event.midiNote), now);
     filter.type = "lowpass";
@@ -67,7 +83,7 @@ export class SimpleBassSynth implements AudioEngine {
     oscillator.connect(shaper);
     shaper.connect(filter);
     filter.connect(gain);
-    gain.connect(context.destination);
+    gain.connect(this.getEffectNodes(context).input);
     oscillator.start(now);
 
     this.voices.set(event.id, { oscillator, filter, shaper, gain });
@@ -92,6 +108,8 @@ export class SimpleBassSynth implements AudioEngine {
     for (const eventId of this.voices.keys()) {
       this.stopNote(eventId);
     }
+
+    this.clearEffectTails();
   }
 
   public releaseAll(): void {
@@ -114,6 +132,8 @@ export class SimpleBassSynth implements AudioEngine {
     }
 
     this.audioContext = new AudioContext();
+    this.effectNodes = this.createEffectNodes(this.audioContext);
+    this.updateEffectNodes(this.audioContext.currentTime);
     return this.audioContext;
   }
 
@@ -142,7 +162,8 @@ export class SimpleBassSynth implements AudioEngine {
     const curve = new Float32Array(
       new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT),
     );
-    const amount = 1 + this.settings.drive * 0.18;
+    const amount =
+      1 + this.settings.drive * 0.18 + this.settings.distortion * 0.46;
 
     for (let index = 0; index < samples; index += 1) {
       const x = (index * 2) / samples - 1;
@@ -150,5 +171,108 @@ export class SimpleBassSynth implements AudioEngine {
     }
 
     return curve;
+  }
+
+  private getEffectNodes(context: AudioContext): EffectNodes {
+    if (!this.effectNodes) {
+      this.effectNodes = this.createEffectNodes(context);
+    }
+
+    return this.effectNodes;
+  }
+
+  private createEffectNodes(context: AudioContext): EffectNodes {
+    const input = context.createGain();
+    const delay = context.createDelay(0.75);
+    const delayFeedback = context.createGain();
+    const delayWet = context.createGain();
+    const reverb = context.createConvolver();
+    const reverbWet = context.createGain();
+
+    input.gain.value = 1;
+    delayFeedback.gain.value = 0;
+    delayWet.gain.value = 0;
+    reverbWet.gain.value = 0;
+    delay.delayTime.value = 0.14;
+    reverb.buffer = this.createReverbImpulse(context);
+    input.connect(context.destination);
+    input.connect(delay);
+    input.connect(reverb);
+    delay.connect(delayFeedback);
+    delayFeedback.connect(delay);
+    delay.connect(delayWet);
+    delayWet.connect(context.destination);
+    reverb.connect(reverbWet);
+    reverbWet.connect(context.destination);
+
+    return {
+      input,
+      delay,
+      delayFeedback,
+      delayWet,
+      reverb,
+      reverbWet,
+    };
+  }
+
+  private updateEffectNodes(now: number): void {
+    if (!this.effectNodes) {
+      return;
+    }
+
+    const delayAmount = this.settings.delay / 100;
+    const reverbAmount = this.settings.reverb / 100;
+
+    this.effectNodes.delay.delayTime.setTargetAtTime(
+      0.09 + delayAmount * 0.28,
+      now,
+      0.04,
+    );
+    this.effectNodes.delayFeedback.gain.setTargetAtTime(
+      delayAmount * 0.28,
+      now,
+      0.04,
+    );
+    this.effectNodes.delayWet.gain.setTargetAtTime(
+      delayAmount * 0.18,
+      now,
+      0.04,
+    );
+    this.effectNodes.reverbWet.gain.setTargetAtTime(
+      reverbAmount * 0.16,
+      now,
+      0.04,
+    );
+  }
+
+  private clearEffectTails(): void {
+    if (!this.audioContext || !this.effectNodes) {
+      return;
+    }
+
+    const now = this.audioContext.currentTime;
+    this.effectNodes.delayFeedback.gain.cancelScheduledValues(now);
+    this.effectNodes.delayWet.gain.cancelScheduledValues(now);
+    this.effectNodes.reverbWet.gain.cancelScheduledValues(now);
+    this.effectNodes.delayFeedback.gain.setValueAtTime(0, now);
+    this.effectNodes.delayWet.gain.setValueAtTime(0, now);
+    this.effectNodes.reverbWet.gain.setValueAtTime(0, now);
+  }
+
+  private createReverbImpulse(context: AudioContext): AudioBuffer {
+    const duration = 0.85;
+    const length = Math.floor(context.sampleRate * duration);
+    const impulse = context.createBuffer(2, length, context.sampleRate);
+
+    for (let channel = 0; channel < impulse.numberOfChannels; channel += 1) {
+      const data = impulse.getChannelData(channel);
+
+      for (let index = 0; index < length; index += 1) {
+        const progress = index / length;
+        data[index] = (Math.random() * 2 - 1) * (1 - progress) ** 2.4;
+      }
+    }
+
+    return impulse;
   }
 }

@@ -48,6 +48,25 @@ describe("PlaybackEngine", () => {
     expect(restarted.status).toBe("playing");
   });
 
+  it("stoppe l'exercice et revient au debut", () => {
+    let now = 0;
+    const engine = new PlaybackEngine({
+      exercise: exercise01,
+      tempo: 60,
+      loop: false,
+      now: () => now,
+    });
+
+    engine.play();
+    now = 2400;
+    expect(engine.getSnapshot().currentBeat).toBeCloseTo(2.4);
+
+    const stopped = engine.stop();
+    expect(stopped.currentBeat).toBe(0);
+    expect(stopped.status).toBe("stopped");
+    expect(stopped.activeEvents).toEqual([]);
+  });
+
   it("boucle en fin d'exercice quand la boucle est active", () => {
     let now = 0;
     const engine = new PlaybackEngine({

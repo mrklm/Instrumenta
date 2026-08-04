@@ -62,31 +62,6 @@
   font-weight: 700;
 }
 
-.handSkinPreview {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.handSkinPreview figure {
-  display: grid;
-  justify-items: center;
-  margin: 0;
-  padding: 10px;
-  border: 1px solid color-mix(in srgb, var(--color-fg), transparent 76%);
-  border-radius: 8px;
-  background: var(--color-field);
-  color: var(--color-field-fg);
-}
-
-.handSkinPreview img {
-  display: block;
-  width: 62px;
-  height: 62px;
-  object-fit: contain;
-}
-
 .settingsFieldset {
   display: flex;
   gap: 12px;

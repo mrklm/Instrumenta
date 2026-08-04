@@ -1,5 +1,11 @@
-.bassSoundDock {
+.bassSoundStack {
+  display: grid;
+  gap: 10px;
   justify-self: end;
+  width: 124px;
+}
+
+.bassSoundDock {
   width: 124px;
   padding: 9px 9px;
   border: 1px solid color-mix(in srgb, var(--color-fg), transparent 70%);
@@ -7,6 +13,10 @@
   background: color-mix(in srgb, var(--color-panel), transparent 8%);
   color: var(--color-fg);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.bassEffectsDock {
+  padding-bottom: 12px;
 }
 
 .bassSoundKnobs {
@@ -124,6 +134,10 @@
 
 @media (max-width: 760px) {
   .bassSoundDock {
+    width: auto;
+  }
+
+  .bassSoundStack {
     justify-self: stretch;
     width: auto;
   }

@@ -88,6 +88,13 @@ export class PlaybackEngine {
     return this.getSnapshot();
   }
 
+  public stop(): PlaybackSnapshot {
+    this.currentBeat = 0;
+    this.pausedBeat = 0;
+    this.status = "stopped";
+    return this.getSnapshot();
+  }
+
   public restart(): PlaybackSnapshot {
     this.currentBeat = 0;
     this.pausedBeat = 0;
@@ -128,7 +135,10 @@ export class PlaybackEngine {
       status: this.status,
       currentBeat: this.currentBeat,
       cursorRatio: getCursorRatio(this.currentBeat, this.durationBeats),
-      activeEvents: getActiveEventsAtBeat(this.exercise.events, this.currentBeat),
+      activeEvents:
+        this.status === "stopped"
+          ? []
+          : getActiveEventsAtBeat(this.exercise.events, this.currentBeat),
       durationBeats: this.durationBeats,
     };
   }

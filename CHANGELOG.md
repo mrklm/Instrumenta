@@ -2,6 +2,15 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.5.0] - 2026-08-05
+
+### Ajouté
+- Exercice 5 de vérification couvrant toutes les cordes et les frettes 0 à 12.
+
+### Modifié
+- Calibration des rectangles de notes à partir des images de manche annotées.
+- Rectangles de notes affinés pour mieux cibler l'intersection corde/case.
+
 ## [1.4.0] - 2026-08-04
 
 ### Ajouté
