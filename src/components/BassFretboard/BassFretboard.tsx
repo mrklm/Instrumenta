@@ -14,15 +14,38 @@ const WIDTH = 1758;
 const IMAGE_HEIGHT = 895;
 const VIEWBOX_Y = 230;
 const VIEWBOX_HEIGHT = 430;
-const RIGHT_HANDED_NUT_X = 452;
-const RIGHT_HANDED_TWELFTH_FRET_X = 1422;
-const LEFT_HANDED_NUT_X = 1288;
-const LEFT_HANDED_TWELFTH_FRET_X = 318;
-const PHOTO_STRING_Y = {
-  G: 421,
-  D: 450,
-  A: 479,
+const RIGHT_HANDED_FRET_X = [
+  462, 572, 668, 762, 851, 937, 1015, 1091, 1163, 1227, 1285, 1341, 1391,
+] as const;
+const LEFT_HANDED_FRET_X = [
+  1292, 1188, 1089, 994, 904, 821, 742, 668, 596, 530, 470, 415, 364,
+] as const;
+const LEFT_HANDED_LABEL_X = [
+  1330, 1240, 1138, 1042, 949, 862, 782, 705, 632, 563, 500, 443, 390,
+] as const;
+const RIGHT_HANDED_STRING_Y = {
+  G: 418,
+  D: 448,
+  A: 478,
   E: 508,
+} as const;
+const LEFT_HANDED_STRING_Y = {
+  G: 412,
+  D: 443,
+  A: 474,
+  E: 505,
+} as const;
+const RIGHT_HANDED_STRING_LABEL = {
+  G: { x: 374, y: 374 },
+  D: { x: 289, y: 390 },
+  A: { x: 202, y: 400 },
+  E: { x: 112, y: 410 },
+} as const;
+const LEFT_HANDED_STRING_LABEL = {
+  G: { x: 1660, y: 494 },
+  D: { x: 1568, y: 510 },
+  A: { x: 1480, y: 526 },
+  E: { x: 1392, y: 536 },
 } as const;
 
 export function BassFretboard({
@@ -30,7 +53,7 @@ export function BassFretboard({
   handedness,
   fretCount,
 }: BassFretboardProps) {
-  const frets = Array.from({ length: fretCount + 1 }, (_, fret) => fret);
+  const frets = Array.from({ length: fretCount }, (_, index) => index + 1);
   const fretboardImage =
     handedness === "right" ? rightFretboardImage : leftFretboardImage;
 
@@ -54,17 +77,28 @@ export function BassFretboard({
         {frets.map((fret) => {
           const x = getFretLabelX(fret, handedness);
           return (
-            <text key={fret} className="fretNumber" x={x} y={390} textAnchor="middle">
+            <text
+              key={fret}
+              className="fretNumber"
+              x={x}
+              y={getFretLabelY(handedness)}
+              textAnchor="middle"
+            >
               {fret}
             </text>
           );
         })}
 
         {DEFAULT_VISUAL_STRING_ORDER.map((string) => {
-          const y = PHOTO_STRING_Y[string];
-          const x = handedness === "right" ? 418 : WIDTH - 418;
+          const { x, y } = getStringLabelPosition(string, handedness);
           return (
-            <text key={string} className="stringName" x={x} y={y + 6}>
+            <text
+              key={string}
+              className="stringName"
+              x={x}
+              y={y}
+              textAnchor="middle"
+            >
               {string}
             </text>
           );
@@ -72,7 +106,7 @@ export function BassFretboard({
 
         {activeNotes.map((note) => {
           const x = getPhotoFretCenterX(note.fret, handedness);
-          const y = PHOTO_STRING_Y[note.string];
+          const y = getPhotoStringY(note.string, handedness);
           const label = note.fret === 0 ? "0" : String(note.fret);
           return (
             <g key={note.id} className="activeFret">
@@ -92,28 +126,49 @@ export function BassFretboard({
   );
 }
 
+function getPhotoStringY(
+  string: (typeof DEFAULT_VISUAL_STRING_ORDER)[number],
+  handedness: Handedness,
+): number {
+  const stringPositions =
+    handedness === "right" ? RIGHT_HANDED_STRING_Y : LEFT_HANDED_STRING_Y;
+  return stringPositions[string];
+}
+
+function getStringLabelPosition(
+  string: (typeof DEFAULT_VISUAL_STRING_ORDER)[number],
+  handedness: Handedness,
+): { x: number; y: number } {
+  const labelPositions =
+    handedness === "right"
+      ? RIGHT_HANDED_STRING_LABEL
+      : LEFT_HANDED_STRING_LABEL;
+  return labelPositions[string];
+}
+
 function getPhotoFretX(fret: number, handedness: Handedness): number {
   const safeFret = Math.min(Math.max(Math.round(fret), 0), 12);
-  const fretDistanceRatio = 1 - Math.pow(2, -safeFret / 12);
-
-  if (handedness === "right") {
-    const scaleLength =
-      (RIGHT_HANDED_TWELFTH_FRET_X - RIGHT_HANDED_NUT_X) / 0.5;
-    return RIGHT_HANDED_NUT_X + scaleLength * fretDistanceRatio;
-  }
-
-  const scaleLength =
-    (LEFT_HANDED_NUT_X - LEFT_HANDED_TWELFTH_FRET_X) / 0.5;
-  return LEFT_HANDED_NUT_X - scaleLength * fretDistanceRatio;
+  const fretPositions =
+    handedness === "right" ? RIGHT_HANDED_FRET_X : LEFT_HANDED_FRET_X;
+  return fretPositions[safeFret];
 }
 
 function getFretLabelX(fret: number, handedness: Handedness): number {
+  if (handedness === "left") {
+    const safeFret = Math.min(Math.max(Math.round(fret), 0), 12);
+    return LEFT_HANDED_LABEL_X[safeFret];
+  }
+
   if (fret === 0) {
     const nutX = getPhotoFretX(0, handedness);
-    return handedness === "right" ? nutX - 34 : nutX + 34;
+    return nutX - 34;
   }
 
   return getPhotoFretCenterX(fret, handedness);
+}
+
+function getFretLabelY(handedness: Handedness): number {
+  return handedness === "left" ? 356 : 390;
 }
 
 function getPhotoFretCenterX(fret: number, handedness: Handedness): number {

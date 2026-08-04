@@ -2,6 +2,15 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.3.0] - 2026-08-04
+
+### Ajouté
+- Images de mains autour du titre pour basculer entre mode droitier et mode gaucher.
+- Sélection de teinte de main dans le menu.
+
+### Modifié
+- Ajustement précis des numéros de frettes, des notes actives et des labels `E A D G` sur les photos de manches droitier et gaucher.
+
 ## [1.2.0] - 2026-08-04
 
 ### Ajouté
