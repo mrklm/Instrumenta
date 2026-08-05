@@ -30,8 +30,9 @@
   display: grid;
   justify-items: center;
   gap: 5px;
-  font-size: 0.68rem;
-  font-weight: 900;
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-letter-spacing);
   text-transform: uppercase;
 }
 
@@ -87,8 +88,8 @@
   background: var(--color-accent);
   color: var(--color-bg);
   font: inherit;
-  font-size: 1.08rem;
-  font-weight: 900;
+  font-size: var(--text-body-large-size);
+  font-weight: var(--text-label-weight);
   line-height: 1;
   cursor: pointer;
 }
@@ -115,8 +116,8 @@
   padding: 6px 8px 0;
   color: var(--color-accent);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.74rem;
-  font-weight: 900;
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-label-weight);
   text-shadow: 0 0 7px var(--color-accent);
   white-space: nowrap;
   animation: preset-marquee 5.5s linear infinite;

@@ -17,16 +17,16 @@
 .fretNumber,
 .stringName {
   fill: #ffffff;
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--font-interface);
+  font-size: var(--text-body-large-size);
+  font-weight: var(--text-label-weight);
   paint-order: stroke;
   stroke: rgba(0, 0, 0, 0.72);
   stroke-width: 4px;
 }
 
 .stringName {
-  font-size: 20px;
+  font-size: var(--text-heading-3-size);
 }
 
 .activeNoteCell {
@@ -54,9 +54,9 @@
 
 .activeFretReadout text {
   fill: var(--color-bg);
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 70px;
-  font-weight: 950;
+  font-weight: var(--text-display-large-weight);
   paint-order: stroke;
   stroke: var(--color-accent);
   stroke-width: 3px;
@@ -64,9 +64,9 @@
 
 .fretboardLegend text {
   fill: #ffffff;
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  font-size: 19px;
-  font-weight: 800;
+  font-family: var(--font-interface);
+  font-size: var(--text-body-large-size);
+  font-weight: var(--text-label-weight);
   paint-order: stroke;
   stroke: rgba(0, 0, 0, 0.78);
   stroke-width: 4px;

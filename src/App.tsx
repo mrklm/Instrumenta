@@ -10,6 +10,7 @@ import { SimpleBassSynth } from "./audio/SimpleBassSynth";
 import { BassFretboard } from "./components/BassFretboard/BassFretboard";
 import { BassSoundControls } from "./components/BassSoundControls/BassSoundControls";
 import { BassTablature } from "./components/BassTablature/BassTablature";
+import { HelpDialog } from "./components/HelpDialog/HelpDialog";
 import {
   SettingsDialog,
   type Instrument,
@@ -37,6 +38,7 @@ function App() {
   const [themeName, setThemeName] = useState<ThemeName>(DEFAULT_THEME_NAME);
   const [instrument, setInstrument] = useState<Instrument>("bass");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [bassSoundPresetIndex, setBassSoundPresetIndex] = useState(
     DEFAULT_BASS_SOUND_PRESET_INDEX,
   );
@@ -231,13 +233,22 @@ function App() {
             <img className="rightHandImage" src={handSkin.rightImage} alt="" />
           </button>
         </div>
-        <button
-          type="button"
-          className="menuButton"
-          onClick={() => setIsSettingsOpen(true)}
-        >
-          Menu
-        </button>
+        <div className="menuActions">
+          <button
+            type="button"
+            className="menuButton"
+            onClick={() => setIsSettingsOpen(true)}
+          >
+            Options
+          </button>
+          <button
+            type="button"
+            className="menuButton"
+            onClick={() => setIsHelpOpen(true)}
+          >
+            Aide
+          </button>
+        </div>
       </nav>
 
       <div className="tempoDock">
@@ -323,10 +334,6 @@ function App() {
         >
           →
         </button>
-        <div className="readout" aria-label="Position de lecture">
-          <span>{snapshot.currentBeat.toFixed(2)}</span>
-          <small>temps</small>
-        </div>
       </header>
 
       <BassFretboard
@@ -352,6 +359,7 @@ function App() {
         onHandednessChange={setHandedness}
         onInstrumentChange={setInstrument}
       />
+      <HelpDialog isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
     </main>
   );
 }

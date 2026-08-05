@@ -28,8 +28,10 @@
 
 .settingsHeader h2 {
   margin: 0;
-  font-size: 1.35rem;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-line-height);
 }
 
 .settingsClose {
@@ -40,7 +42,7 @@
   background: var(--color-accent);
   color: var(--color-bg);
   font: inherit;
-  font-weight: 800;
+  font-weight: var(--text-label-weight);
   cursor: pointer;
 }
 
@@ -48,7 +50,9 @@
   display: grid;
   gap: 8px;
   margin-top: 14px;
-  font-weight: 800;
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-letter-spacing);
 }
 
 .settingsField select {
@@ -59,7 +63,7 @@
   background: var(--color-field);
   color: var(--color-field-fg);
   font: inherit;
-  font-weight: 700;
+  font-weight: var(--text-body-weight);
 }
 
 .settingsFieldset {
@@ -74,7 +78,9 @@
 
 .settingsFieldset legend {
   padding: 0 5px;
-  font-weight: 800;
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-letter-spacing);
 }
 
 .settingsFieldset label {
