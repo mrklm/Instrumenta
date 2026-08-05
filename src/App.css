@@ -144,19 +144,6 @@
   background: color-mix(in srgb, var(--color-panel), transparent 18%);
 }
 
-h1 {
-  margin: 0;
-  color: var(--color-fg);
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 2vw, 1.45rem);
-  font-weight: var(--text-heading-2-weight);
-  line-height: var(--text-heading-2-line-height);
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .exerciseNavButton {
   width: 168px;
   height: 36px;
@@ -169,6 +156,38 @@ h1 {
   font-weight: 900;
   line-height: 1;
   cursor: pointer;
+}
+
+.exerciseSelectLabel {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.exerciseSelectLabel span {
+  color: color-mix(in srgb, var(--color-fg), transparent 22%);
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-letter-spacing);
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.exerciseSelectLabel select {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--color-accent), var(--color-fg) 18%);
+  border-radius: 6px;
+  background: var(--color-field);
+  color: var(--color-field-fg);
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: var(--text-heading-2-weight);
+  line-height: 1;
+  text-align: center;
 }
 
 .fretboardPanel,

@@ -33,3 +33,23 @@ export function createFourMeasureExercise(
     events: createExerciseEvents(id, motif),
   };
 }
+
+export function createPatternExercise(
+  id: string,
+  title: string,
+  tempo: number,
+  motif: readonly Omit<BassNoteEvent, "id" | "startBeat">[],
+  lengthBeats = 16,
+): BassExercise {
+  return {
+    id,
+    title,
+    tempo,
+    timeSignature: {
+      numerator: 4,
+      denominator: 4,
+    },
+    loop: true,
+    events: createExerciseEvents(id, motif, lengthBeats),
+  };
+}

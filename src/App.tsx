@@ -15,7 +15,7 @@ import {
   SettingsDialog,
   type Instrument,
 } from "./components/SettingsDialog/SettingsDialog";
-import { bassExercises } from "./exercises";
+import { bassExerciseCategories, bassExercises } from "./exercises";
 import { PlaybackEngine } from "./playback/PlaybackEngine";
 import type { PlaybackSnapshot } from "./playback/playbackTypes";
 import {
@@ -193,6 +193,16 @@ function App() {
     );
   };
 
+  const selectExerciseById = (exerciseId: string) => {
+    const nextIndex = bassExercises.findIndex(
+      (exercise) => exercise.id === exerciseId,
+    );
+
+    if (nextIndex >= 0) {
+      selectExercise(nextIndex);
+    }
+  };
+
   const selectBassSoundPreset = (nextIndex: number) => {
     const normalizedIndex =
       (nextIndex + BASS_SOUND_PRESETS.length) % BASS_SOUND_PRESETS.length;
@@ -325,7 +335,23 @@ function App() {
         >
           ←
         </button>
-        <h1>{currentExercise.title}</h1>
+        <label className="exerciseSelectLabel">
+          <span>Exercice</span>
+          <select
+            value={currentExercise.id}
+            onChange={(event) => selectExerciseById(event.currentTarget.value)}
+          >
+            {bassExerciseCategories.map((category) => (
+              <optgroup key={category.id} label={category.label}>
+                {category.exercises.map((exercise) => (
+                  <option key={exercise.id} value={exercise.id}>
+                    {exercise.title}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        </label>
         <button
           type="button"
           className="exerciseNavButton"
