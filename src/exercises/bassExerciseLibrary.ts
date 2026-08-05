@@ -308,7 +308,7 @@ const intermediateExercises: readonly BassExercise[] = [
 ];
 
 const expertExercises: readonly BassExercise[] = [
-  make("expert-01", "Expert 1 — Chromatismes position 5", 116, [
+  make("expert-01", "Avancé 1 — Chromatismes position 5", 116, [
     n("E", 5, 0.5),
     n("E", 6, 0.5),
     n("E", 7, 0.5),
@@ -318,7 +318,7 @@ const expertExercises: readonly BassExercise[] = [
     n("A", 7, 0.5),
     n("A", 8, 0.5),
   ]),
-  make("expert-02", "Expert 2 — Chromatismes inversés", 116, [
+  make("expert-02", "Avancé 2 — Chromatismes inversés", 116, [
     n("G", 8, 0.5),
     n("G", 7, 0.5),
     n("G", 6, 0.5),
@@ -328,7 +328,7 @@ const expertExercises: readonly BassExercise[] = [
     n("D", 6, 0.5),
     n("D", 5, 0.5),
   ]),
-  make("expert-03", "Expert 3 — Modes trois notes par corde", 112, [
+  make("expert-03", "Avancé 3 — Modes trois notes par corde", 112, [
     n("E", 3, 0.5),
     n("E", 5, 0.5),
     n("E", 7, 0.5),
@@ -336,7 +336,7 @@ const expertExercises: readonly BassExercise[] = [
     n("A", 5, 0.5),
     n("A", 7, 0.5),
   ]),
-  make("expert-04", "Expert 4 — Arpèges septième", 108, [
+  make("expert-04", "Avancé 4 — Arpèges septième", 108, [
     n("E", 3),
     n("A", 2),
     n("A", 5),
@@ -344,38 +344,38 @@ const expertExercises: readonly BassExercise[] = [
     n("D", 5),
     n("G", 4),
   ]),
-  make("expert-05", "Expert 5 — Dominante 7", 108, [
+  make("expert-05", "Avancé 5 — Dominante 7", 108, [
     n("E", 3),
     n("A", 2),
     n("A", 5),
     n("D", 3),
   ]),
-  make("expert-06", "Expert 6 — Mineur 7", 108, [
+  make("expert-06", "Avancé 6 — Mineur 7", 108, [
     n("E", 5),
     n("A", 3),
     n("A", 7),
     n("D", 5),
   ]),
-  make("expert-07", "Expert 7 — Triades brisées", 116, [
+  make("expert-07", "Avancé 7 — Triades brisées", 116, [
     n("E", 3, 0.5),
     n("A", 2, 0.5),
     n("D", 5, 0.5),
     n("A", 2, 0.5),
   ]),
-  make("expert-08", "Expert 8 — Sauts d'octave rapides", 118, [
+  make("expert-08", "Avancé 8 — Sauts d'octave rapides", 118, [
     n("E", 3, 0.5),
     n("D", 5, 0.5),
     n("A", 5, 0.5),
     n("G", 7, 0.5),
   ]),
-  make("expert-09", "Expert 9 — Extensions 9e", 106, [
+  make("expert-09", "Avancé 9 — Extensions 9e", 106, [
     n("E", 3),
     n("A", 2),
     n("A", 5),
     n("D", 5),
     n("G", 4),
   ]),
-  make("expert-10", "Expert 10 — Motif fusion", 124, [
+  make("expert-10", "Avancé 10 — Motif fusion", 124, [
     n("E", 5, 0.5),
     n("A", 7, 0.5),
     n("D", 5, 0.5),
@@ -383,31 +383,31 @@ const expertExercises: readonly BassExercise[] = [
     n("D", 7, 0.5),
     n("A", 5, 0.5),
   ]),
-  make("expert-11", "Expert 11 — Traversée diagonale", 112, [
+  make("expert-11", "Avancé 11 — Traversée diagonale", 112, [
     n("E", 1),
     n("A", 3),
     n("D", 5),
     n("G", 7),
   ]),
-  make("expert-12", "Expert 12 — Retour diagonal", 112, [
+  make("expert-12", "Avancé 12 — Retour diagonal", 112, [
     n("G", 7),
     n("D", 5),
     n("A", 3),
     n("E", 1),
   ]),
-  make("expert-13", "Expert 13 — Positions hautes", 104, [
+  make("expert-13", "Avancé 13 — Positions hautes", 104, [
     n("E", 8),
     n("A", 10),
     n("D", 10),
     n("G", 9),
   ]),
-  make("expert-14", "Expert 14 — Démanchés 3 à 9", 100, [
+  make("expert-14", "Avancé 14 — Démanchés 3 à 9", 100, [
     n("E", 3),
     n("E", 5),
     n("A", 7),
     n("D", 9),
   ]),
-  make("expert-15", "Expert 15 — Cellule bebop", 118, [
+  make("expert-15", "Avancé 15 — Cellule bebop", 118, [
     n("E", 3, 0.5),
     n("E", 4, 0.5),
     n("E", 5, 0.5),
@@ -415,19 +415,19 @@ const expertExercises: readonly BassExercise[] = [
     n("A", 3, 0.5),
     n("A", 5, 0.5),
   ]),
-  make("expert-16", "Expert 16 — Pédale et mélodie", 108, [
+  make("expert-16", "Avancé 16 — Pédale et mélodie", 108, [
     n("E", 0, 0.5),
     n("D", 5, 0.5),
     n("E", 0, 0.5),
     n("G", 7, 0.5),
   ]),
-  make("expert-17", "Expert 17 — Motif metal", 126, [
+  make("expert-17", "Avancé 17 — Motif metal", 126, [
     n("E", 0, 0.5),
     n("E", 3, 0.5),
     n("E", 5, 0.5),
     n("A", 5, 0.5),
   ]),
-  make("expert-18", "Expert 18 — Motif funk avancé", 120, [
+  make("expert-18", "Avancé 18 — Motif funk avancé", 120, [
     n("E", 5, 0.5),
     n("E", 7, 0.5),
     n("A", 5, 0.5),
@@ -435,13 +435,13 @@ const expertExercises: readonly BassExercise[] = [
     n("A", 7, 0.5),
     n("E", 5, 0.5),
   ]),
-  make("expert-19", "Expert 19 — Accords arpégés", 102, [
+  make("expert-19", "Avancé 19 — Accords arpégés", 102, [
     n("E", 3),
     n("A", 5),
     n("D", 4),
     n("G", 5),
   ]),
-  make("expert-20", "Expert 20 — Synthèse manche", 116, [
+  make("expert-20", "Avancé 20 — Synthèse manche", 116, [
     n("E", 0, 0.5),
     n("A", 3, 0.5),
     n("D", 5, 0.5),
@@ -466,7 +466,7 @@ export const bassExerciseCategories: readonly BassExerciseCategory[] = [
   },
   {
     id: "expert",
-    label: "Expert",
+    label: "Avancé",
     exercises: expertExercises,
   },
 ];
