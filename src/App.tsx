@@ -6,6 +6,7 @@ import {
 } from "./audio/bassSoundPresets";
 import { APP_VERSION } from "./appVersion";
 import { DEFAULT_HAND_SKIN_ID, getHandSkinById } from "./assets/handSkins";
+import instrumentaLogo from "../assets/instrumenta.png";
 import { SimpleBassSynth } from "./audio/SimpleBassSynth";
 import { BassFretboard } from "./components/BassFretboard/BassFretboard";
 import { BassSoundControls } from "./components/BassSoundControls/BassSoundControls";
@@ -216,7 +217,9 @@ function App() {
   return (
     <main className="appRoot" style={themeStyle}>
       <nav className="menuBar" aria-label="Menu principal">
-        <div className="menuSpacer" />
+        <div className="menuBrandMark" aria-hidden="true">
+          <img src={instrumentaLogo} alt="" />
+        </div>
         <div className="menuTitle">
           <button
             type="button"
@@ -246,17 +249,27 @@ function App() {
         <div className="menuActions">
           <button
             type="button"
-            className="menuButton"
+            className="menuIconButton"
+            aria-label="Ouvrir les options"
+            title="Options"
             onClick={() => setIsSettingsOpen(true)}
           >
-            Options
+            <svg
+              className="menuGearIcon"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+            >
+              <path d="M10.2 2h3.6l.5 3.1 1.2.5 2.6-1.8 2.6 2.6-1.8 2.6.5 1.2 3.1.5v3.6l-3.1.5-.5 1.2 1.8 2.6-2.6 2.6-2.6-1.8-1.2.5-.5 3.1h-3.6l-.5-3.1-1.2-.5-2.6 1.8-2.6-2.6L5.1 16l-.5-1.2-3.1-.5v-3.6l3.1-.5.5-1.2-1.8-2.6 2.6-2.6 2.6 1.8 1.2-.5L10.2 2Zm1.8 6.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Z" />
+            </svg>
           </button>
           <button
             type="button"
-            className="menuButton"
+            className="menuIconButton"
+            aria-label="Ouvrir l'aide"
+            title="Aide"
             onClick={() => setIsHelpOpen(true)}
           >
-            Aide
+            <span aria-hidden="true">?</span>
           </button>
         </div>
       </nav>

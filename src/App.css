@@ -40,6 +40,25 @@
   line-height: var(--text-caption-line-height);
 }
 
+.menuBrandMark {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  width: 180px;
+  height: 51px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.menuBrandMark img {
+  display: block;
+  width: auto;
+  max-width: 180px;
+  max-height: 51px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
 .handModeButton {
   display: grid;
   place-items: center;
@@ -74,22 +93,54 @@
 }
 
 .menuActions {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
   justify-self: end;
+  width: 106px;
+  margin-right: -11px;
 }
 
-.menuButton {
-  justify-self: end;
-  min-height: 38px;
-  padding: 0 14px;
+.menuIconButton {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 30px;
+  padding: 0;
   border: 1px solid var(--color-accent);
   border-radius: 6px;
   background: var(--color-accent);
   color: var(--color-bg);
-  font: inherit;
-  font-weight: 800;
+  font-family: var(--font-interface);
+  font-size: var(--text-body-large-size);
+  font-weight: var(--text-label-weight);
+  line-height: 1;
   cursor: pointer;
+}
+
+.menuIconButton span {
+  display: block;
+  width: 1em;
+  text-align: center;
+  transform: translateY(-1px);
+}
+
+.menuGearIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.menuIconButton:hover,
+.menuIconButton:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.menuIconButton:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-fg), transparent 35%);
+  outline-offset: 3px;
 }
 
 .topControls {
@@ -329,8 +380,16 @@
     padding: 8px 10px;
   }
 
-  .menuSpacer {
-    display: block;
+  .menuBrandMark {
+    width: 129px;
+    height: 51px;
+    border-radius: 10px;
+  }
+
+  .menuBrandMark img {
+    max-width: 129px;
+    max-height: 51px;
+    border-radius: 10px;
   }
 
   .menuTitle {
@@ -350,6 +409,16 @@
 
   .menuTitle small {
     font-size: var(--text-caption-size);
+  }
+
+  .menuActions {
+    width: 76px;
+    gap: 8px;
+    margin-right: 0;
+  }
+
+  .menuIconButton {
+    height: 30px;
   }
 
   .appShell {
