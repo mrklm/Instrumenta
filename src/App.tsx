@@ -7,6 +7,11 @@ import {
 import { APP_VERSION } from "./appVersion";
 import { DEFAULT_HAND_SKIN_ID, getHandSkinById } from "./assets/handSkins";
 import instrumentaLogo from "../assets/instrumenta.png";
+import {
+  METRONOME_SOUND_OPTIONS,
+  SimpleMetronome,
+  type MetronomeSound,
+} from "./audio/SimpleMetronome";
 import { SimpleBassSynth } from "./audio/SimpleBassSynth";
 import { BassFretboard } from "./components/BassFretboard/BassFretboard";
 import { BassSoundControls } from "./components/BassSoundControls/BassSoundControls";
@@ -46,6 +51,10 @@ function App() {
   const [instrument, setInstrument] = useState<Instrument>("bass");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [metronomeEnabled, setMetronomeEnabled] = useState(false);
+  const [metronomeVolume, setMetronomeVolume] = useState(70);
+  const [metronomeSound, setMetronomeSound] =
+    useState<MetronomeSound>("click");
   const [bassSoundPresetIndex, setBassSoundPresetIndex] = useState(
     DEFAULT_BASS_SOUND_PRESET_INDEX,
   );
@@ -75,7 +84,9 @@ function App() {
     getExerciseSignature(currentExercise),
   );
   const synth = useMemo(() => new SimpleBassSynth(), []);
+  const metronome = useMemo(() => new SimpleMetronome(), []);
   const activeSoundIdsRef = useRef<Set<string>>(new Set());
+  const lastMetronomeBeatRef = useRef<number | null>(null);
   const [snapshot, setSnapshot] = useState<PlaybackSnapshot>(
     playbackEngineRef.current.getSnapshot(),
   );
@@ -83,6 +94,13 @@ function App() {
   useEffect(() => {
     synth.setSettings(bassSoundSettings);
   }, [bassSoundSettings, synth]);
+
+  useEffect(() => {
+    metronome.setSettings({
+      volume: metronomeVolume,
+      sound: metronomeSound,
+    });
+  }, [metronome, metronomeSound, metronomeVolume]);
 
   useEffect(() => {
     const nextSignature = getExerciseSignature(currentExercise);
@@ -156,13 +174,43 @@ function App() {
     activeSoundIdsRef.current = activeIds;
   }, [snapshot, soundEnabled, synth]);
 
+  useEffect(() => {
+    if (!metronomeEnabled || snapshot.status !== "playing") {
+      lastMetronomeBeatRef.current = null;
+      metronome.stop();
+      return;
+    }
+
+    const beatIndex = Math.floor(snapshot.currentBeat);
+
+    if (beatIndex === lastMetronomeBeatRef.current) {
+      return;
+    }
+
+    lastMetronomeBeatRef.current = beatIndex;
+    metronome.playBeat(
+      beatIndex % currentExercise.timeSignature.numerator === 0,
+    );
+  }, [
+    currentExercise.timeSignature.numerator,
+    metronome,
+    metronomeEnabled,
+    snapshot.currentBeat,
+    snapshot.status,
+  ]);
+
   const handlePlay = () => {
+    if (metronomeEnabled) {
+      metronome.enable();
+    }
+
     setSnapshot(playbackEngineRef.current.play());
   };
 
   const handleStop = () => {
     synth.stopAll();
     activeSoundIdsRef.current.clear();
+    lastMetronomeBeatRef.current = null;
     setSnapshot(playbackEngineRef.current.stop());
   };
 
@@ -185,6 +233,16 @@ function App() {
     }
   };
 
+  const handleMetronomeEnabledChange = (enabled: boolean) => {
+    setMetronomeEnabled(enabled);
+    lastMetronomeBeatRef.current = null;
+
+    if (enabled) {
+      metronome.enable();
+      metronome.playBeat(true);
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code !== "Space" || shouldIgnorePlaybackShortcut(event.target)) {
@@ -196,6 +254,7 @@ function App() {
       if (playbackEngineRef.current.getSnapshot().status === "playing") {
         synth.stopAll();
         activeSoundIdsRef.current.clear();
+        lastMetronomeBeatRef.current = null;
         setSnapshot(playbackEngineRef.current.stop());
       } else {
         setSnapshot(playbackEngineRef.current.play());
@@ -215,6 +274,7 @@ function App() {
 
     synth.releaseAll();
     activeSoundIdsRef.current.clear();
+    lastMetronomeBeatRef.current = null;
     setExerciseIndex(normalizedIndex);
     setTempo(nextExercise.tempo);
     setLoop(nextExercise.loop);
@@ -250,6 +310,7 @@ function App() {
     setBassSoundSettings(preset.settings);
   };
   const tempoRotation = ((tempo - 40) / 160) * 270 - 135;
+  const metronomeVolumeRotation = (metronomeVolume / 100) * 270 - 135;
 
   return (
     <main className="appRoot" style={themeStyle}>
@@ -363,6 +424,75 @@ function App() {
             Son
           </label>
         </div>
+
+        <section className="metronomePanel" aria-label="Réglages du métronome">
+          <div className="metronomeHeader">
+            <h2>Metronome</h2>
+            <button
+              type="button"
+              className={
+                metronomeEnabled
+                  ? "metronomePowerButton active"
+                  : "metronomePowerButton"
+              }
+              aria-label={
+                metronomeEnabled
+                  ? "Désactiver le métronome"
+                  : "Activer le métronome"
+              }
+              aria-pressed={metronomeEnabled}
+              onClick={() =>
+                handleMetronomeEnabledChange(!metronomeEnabled)
+              }
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 3v8" />
+                <path d="M7.1 6.4a7 7 0 1 0 9.8 0" />
+              </svg>
+            </button>
+          </div>
+
+          <label className="metronomeKnob">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={metronomeVolume}
+              aria-label={`Volume du métronome : ${metronomeVolume}%`}
+              onChange={(event) =>
+                setMetronomeVolume(Number(event.currentTarget.value))
+              }
+            />
+            <span
+              className="metronomeKnobFace"
+              style={
+                {
+                  "--metronome-knob-rotation": `${metronomeVolumeRotation}deg`,
+                } as React.CSSProperties
+              }
+            >
+              <span className="metronomeKnobIndicator" />
+            </span>
+            <span>Volume</span>
+            <strong>{metronomeVolume}%</strong>
+          </label>
+
+          <label className="metronomeSoundSelect">
+            <span>Son</span>
+            <select
+              value={metronomeSound}
+              onChange={(event) =>
+                setMetronomeSound(event.currentTarget.value as MetronomeSound)
+              }
+            >
+              {METRONOME_SOUND_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </section>
       </div>
 
       <div className="topControls">

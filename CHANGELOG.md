@@ -2,6 +2,14 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.6.1] - 2026-08-07
+
+### Ajouté
+- Métronome réglable avec activation, volume et sélection de sons.
+
+### Modifié
+- Amélioration du volume et de l'ergonomie des potentiomètres.
+
 ## [1.6.0] - 2026-08-07
 
 ### Ajouté
