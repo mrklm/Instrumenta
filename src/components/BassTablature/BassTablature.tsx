@@ -10,17 +10,17 @@ interface BassTablatureProps {
 }
 
 const WIDTH = 920;
-const ROW_HEIGHT = 42;
+const ROW_HEIGHT = 35;
 const LABEL_WIDTH = 42;
-const TOP_PADDING = 30;
-const BOTTOM_PADDING = 24;
+const TOP_PADDING = 24;
+const BOTTOM_PADDING = 18;
 
 export function BassTablature({
   exercise,
   activeNotes,
   currentBeat,
 }: BassTablatureProps) {
-  const durationBeats = getExerciseDurationBeats(exercise.events);
+  const durationBeats = getExerciseDurationBeats(exercise);
   const height =
     TOP_PADDING + BOTTOM_PADDING + ROW_HEIGHT * DEFAULT_VISUAL_STRING_ORDER.length;
   const noteAreaWidth = WIDTH - LABEL_WIDTH - 28;
@@ -74,7 +74,7 @@ export function BassTablature({
 
           return (
             <g key={event.id} className={isActive ? "tabNote active" : "tabNote"}>
-              <rect x={x - 12} y={y - 17} width={Math.max(width, 28)} height="34" rx="4" />
+              <rect x={x - 12} y={y - 14} width={Math.max(width, 28)} height="28" rx="4" />
               <text x={x} y={y + 6} textAnchor="middle">
                 {event.fret}
               </text>

@@ -1,0 +1,123 @@
+.exerciseTickerShell {
+  position: relative;
+  margin-top: 12px;
+}
+
+.exerciseTicker {
+  display: block;
+  width: 100%;
+  height: 37px;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent), black 35%);
+  border-radius: 5px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 35%),
+    #07120b;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.6),
+    0 0 8px color-mix(in srgb, var(--color-accent), transparent 72%);
+  cursor: pointer;
+}
+
+.exerciseTicker span {
+  display: inline-block;
+  min-width: 100%;
+  padding: 10px 8px 0;
+  color: var(--color-accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-body-large-size);
+  font-weight: var(--text-label-weight);
+  text-shadow: 0 0 7px var(--color-accent);
+  white-space: nowrap;
+  transform: translateX(0);
+}
+
+.exerciseTicker.initialScroll span {
+  animation: exercise-ticker-initial-marquee var(--exercise-ticker-initial-duration, 6s) linear forwards;
+}
+
+.exerciseTicker.loopScroll span {
+  animation: exercise-ticker-loop-marquee var(--exercise-ticker-duration, 18s) linear infinite;
+}
+
+.exerciseTicker.paused span {
+  animation-play-state: paused;
+}
+
+.exerciseTickerSpeedPanel {
+  position: absolute;
+  right: 10px;
+  bottom: calc(100% + 8px);
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+  width: min(330px, calc(100% - 20px));
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--color-accent), black 28%);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-panel), black 8%);
+  color: var(--color-fg);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.exerciseTickerSpeedPanel label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.exerciseTickerSpeedPanel label span {
+  color: color-mix(in srgb, var(--color-fg), transparent 15%);
+  font-family: var(--font-interface);
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-label-weight);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.exerciseTickerSpeedPanel input {
+  width: 100%;
+  accent-color: var(--color-accent);
+}
+
+.exerciseTickerSpeedPanel strong {
+  color: var(--color-accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-caption-size);
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exerciseTicker {
+    overflow: auto hidden;
+  }
+
+  .exerciseTicker span {
+    animation: none;
+    transform: none;
+  }
+}
+
+@keyframes exercise-ticker-initial-marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes exercise-ticker-loop-marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -16,7 +16,7 @@
 .tabStringName {
   fill: var(--color-fg);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -43,7 +43,7 @@
 .tabNote text {
   fill: var(--color-field-fg);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 800;
 }
 

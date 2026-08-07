@@ -60,7 +60,7 @@ export class PlaybackEngine {
     this.tempo = options.tempo;
     this.loop = options.loop;
     this.now = options.now ?? performance.now.bind(performance);
-    this.durationBeats = getExerciseDurationBeats(this.exercise.events);
+    this.durationBeats = getExerciseDurationBeats(this.exercise);
   }
 
   public play(): PlaybackSnapshot {

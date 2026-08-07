@@ -1,10 +1,14 @@
-import type { BassExercise, BassNoteEvent, BassStringName } from "../types/music";
+import type {
+  BassExercise,
+  BassLearningModule,
+  BassNoteEvent,
+  BassStringName,
+} from "../types/music";
+import {
+  beginnerExerciseModules,
+  beginnerExercises,
+} from "./beginnerExerciseJson";
 import { createPatternExercise } from "./exerciseUtils";
-import { exercise01 } from "./exercise01";
-import { exercise02 } from "./exercise02";
-import { exercise03 } from "./exercise03";
-import { exercise04 } from "./exercise04";
-import { exercise05 } from "./exercise05";
 
 export type BassExerciseCategoryId = "beginner" | "intermediate" | "expert";
 
@@ -41,104 +45,6 @@ const make = (
   motif: readonly NoteDraft[],
   lengthBeats = 16,
 ) => createPatternExercise(id, title, tempo, motif, lengthBeats);
-
-const beginnerExercises: readonly BassExercise[] = [
-  exercise01,
-  exercise02,
-  exercise03,
-  exercise04,
-  exercise05,
-  make("beginner-06", "Débutant 6 — Corde A en mouvement", 74, [
-    n("A", 0),
-    n("A", 2),
-    n("A", 3),
-    n("A", 5),
-  ]),
-  make("beginner-07", "Débutant 7 — Corde D en mouvement", 76, [
-    n("D", 0),
-    n("D", 2),
-    n("D", 4),
-    n("D", 5),
-  ]),
-  make("beginner-08", "Débutant 8 — Corde G en mouvement", 76, [
-    n("G", 0),
-    n("G", 2),
-    n("G", 4),
-    n("G", 5),
-  ]),
-  make("beginner-09", "Débutant 9 — Petits écarts 1-3", 82, [
-    n("E", 1),
-    n("E", 3),
-    n("A", 1),
-    n("A", 3),
-  ]),
-  make("beginner-10", "Débutant 10 — Petits écarts 2-4", 82, [
-    n("E", 2),
-    n("E", 4),
-    n("A", 2),
-    n("A", 4),
-  ]),
-  make("beginner-11", "Débutant 11 — Traversée E/A/D/G", 86, [
-    n("E", 3),
-    n("A", 3),
-    n("D", 3),
-    n("G", 3),
-  ]),
-  make("beginner-12", "Débutant 12 — Retour G/D/A/E", 86, [
-    n("G", 5),
-    n("D", 5),
-    n("A", 5),
-    n("E", 5),
-  ]),
-  make("beginner-13", "Débutant 13 — Alternance cordes graves", 80, [
-    n("E", 0),
-    n("A", 0),
-    n("E", 3),
-    n("A", 3),
-  ]),
-  make("beginner-14", "Débutant 14 — Alternance cordes aiguës", 80, [
-    n("D", 0),
-    n("G", 0),
-    n("D", 2),
-    n("G", 2),
-  ]),
-  make("beginner-15", "Débutant 15 — Repères 3-5-7", 78, [
-    n("E", 3),
-    n("E", 5),
-    n("E", 7),
-    n("A", 7),
-  ]),
-  make("beginner-16", "Débutant 16 — Descente 7-5-3", 78, [
-    n("A", 7),
-    n("E", 7),
-    n("E", 5),
-    n("E", 3),
-  ]),
-  make("beginner-17", "Débutant 17 — Croisement simple", 84, [
-    n("E", 5),
-    n("A", 3),
-    n("D", 5),
-    n("G", 3),
-  ]),
-  make("beginner-18", "Débutant 18 — Corde à vide puis case", 72, [
-    n("E", 0),
-    n("E", 3),
-    n("A", 0),
-    n("A", 3),
-  ]),
-  make("beginner-19", "Débutant 19 — Manche milieu", 86, [
-    n("E", 5),
-    n("A", 5),
-    n("D", 5),
-    n("G", 5),
-  ]),
-  make("beginner-20", "Débutant 20 — Vérification fluide", 90, [
-    n("E", 3),
-    n("A", 5),
-    n("D", 7),
-    n("G", 9),
-  ]),
-];
 
 const intermediateExercises: readonly BassExercise[] = [
   make("intermediate-01", "Intermédiaire 1 — Do majeur", 92, [
@@ -474,3 +380,6 @@ export const bassExerciseCategories: readonly BassExerciseCategory[] = [
 export const bassExercises = bassExerciseCategories.flatMap(
   (category) => category.exercises,
 );
+
+export const bassBeginnerModules: readonly BassLearningModule[] =
+  beginnerExerciseModules;

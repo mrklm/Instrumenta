@@ -2,6 +2,16 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.6.0] - 2026-08-07
+
+### Ajouté
+- Intégration des 20 exercices débutants depuis le fichier JSON pédagogique.
+- Affichage des indications pédagogiques dans une barre défilante réglable.
+
+### Modifié
+- Conservation des silences musicaux via `lengthBeats` dans la lecture et la tablature.
+- Réglage interactif de la vitesse de défilement des indications.
+
 ## [1.5.1] - 2026-08-05
 
 ### Modifié

@@ -11,6 +11,7 @@ import { SimpleBassSynth } from "./audio/SimpleBassSynth";
 import { BassFretboard } from "./components/BassFretboard/BassFretboard";
 import { BassSoundControls } from "./components/BassSoundControls/BassSoundControls";
 import { BassTablature } from "./components/BassTablature/BassTablature";
+import { ExerciseTicker } from "./components/ExerciseTicker/ExerciseTicker";
 import { HelpDialog } from "./components/HelpDialog/HelpDialog";
 import {
   SettingsDialog,
@@ -28,6 +29,11 @@ import type { Handedness } from "./types/music";
 import "./App.css";
 
 const FRET_COUNT = 12;
+
+const getExerciseSignature = (exercise: typeof bassExercises[number]) =>
+  `${exercise.id}:${exercise.title}:${exercise.events
+    .map((event) => `${event.string}${event.fret}@${event.startBeat}`)
+    .join("|")}`;
 
 function App() {
   const [exerciseIndex, setExerciseIndex] = useState(0);
@@ -65,6 +71,9 @@ function App() {
       loop: currentExercise.loop,
     }),
   );
+  const playbackExerciseSignatureRef = useRef(
+    getExerciseSignature(currentExercise),
+  );
   const synth = useMemo(() => new SimpleBassSynth(), []);
   const activeSoundIdsRef = useRef<Set<string>>(new Set());
   const [snapshot, setSnapshot] = useState<PlaybackSnapshot>(
@@ -74,6 +83,33 @@ function App() {
   useEffect(() => {
     synth.setSettings(bassSoundSettings);
   }, [bassSoundSettings, synth]);
+
+  useEffect(() => {
+    const nextSignature = getExerciseSignature(currentExercise);
+
+    if (playbackExerciseSignatureRef.current === nextSignature) {
+      return;
+    }
+
+    const wasPlaying =
+      playbackEngineRef.current.getSnapshot().status === "playing";
+
+    synth.releaseAll();
+    activeSoundIdsRef.current.clear();
+    setTempo(currentExercise.tempo);
+    setLoop(currentExercise.loop);
+    playbackEngineRef.current = new PlaybackEngine({
+      exercise: currentExercise,
+      tempo: currentExercise.tempo,
+      loop: currentExercise.loop,
+    });
+    playbackExerciseSignatureRef.current = nextSignature;
+    setSnapshot(
+      wasPlaying
+        ? playbackEngineRef.current.playFromStart()
+        : playbackEngineRef.current.getSnapshot(),
+    );
+  }, [currentExercise, synth]);
 
   useEffect(() => {
     if (snapshot.status !== "playing") {
@@ -187,6 +223,7 @@ function App() {
       tempo: nextExercise.tempo,
       loop: nextExercise.loop,
     });
+    playbackExerciseSignatureRef.current = getExerciseSignature(nextExercise);
     setSnapshot(
       wasPlaying
         ? playbackEngineRef.current.playFromStart()
@@ -380,6 +417,8 @@ function App() {
         handedness={handedness}
         fretCount={FRET_COUNT}
       />
+
+      <ExerciseTicker exercise={currentExercise} />
 
       <BassTablature
         exercise={currentExercise}

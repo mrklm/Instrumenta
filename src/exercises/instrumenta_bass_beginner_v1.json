@@ -1,0 +1,3522 @@
+{
+  "schemaVersion": "1.0.0",
+  "libraryId": "instrumenta-bass-beginner-v1",
+  "instrument": {
+    "id": "bass-4-standard",
+    "label": "Basse 4 cordes",
+    "tuning": [
+      {
+        "string": "E",
+        "label": "MI",
+        "openMidiNote": 28
+      },
+      {
+        "string": "A",
+        "label": "LA",
+        "openMidiNote": 33
+      },
+      {
+        "string": "D",
+        "label": "RÉ",
+        "openMidiNote": 38
+      },
+      {
+        "string": "G",
+        "label": "SOL",
+        "openMidiNote": 43
+      }
+    ]
+  },
+  "indicationDisplayOrder": [
+    "objective",
+    "advice",
+    "listenFor",
+    "success"
+  ],
+  "modules": [
+    {
+      "id": "module-01",
+      "order": 1,
+      "title": "Pulsation et cordes à vide",
+      "description": "Installer la pulsation, découvrir les cordes et jouer un premier groove."
+    },
+    {
+      "id": "module-02",
+      "order": 2,
+      "title": "Premières notes frettées",
+      "description": "Coordonner les deux mains et utiliser les premiers repères du manche."
+    },
+    {
+      "id": "module-03",
+      "order": 3,
+      "title": "Repères et déplacements",
+      "description": "Traverser les cordes, reconnaître les cases repères et contrôler les démanchés."
+    },
+    {
+      "id": "module-04",
+      "order": 4,
+      "title": "Premiers outils de bassiste",
+      "description": "Suivre les fondamentales et construire des grooves avec quintes et octaves."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "beginner-01",
+      "order": 1,
+      "category": "beginner",
+      "moduleId": "module-01",
+      "title": "Jouer sur la pulsation",
+      "subtitle": "Corde E à vide",
+      "tempo": 60,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "pulse",
+        "secondary": [
+          "open-strings",
+          "right-hand-regularity"
+        ]
+      },
+      "prerequisites": [],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Jouer une note sur chaque pulsation sans accélérer."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Gardez la main droite détendue et laissez chaque note durer jusqu’à la suivante."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Vérifiez que toutes les notes ont le même volume et le même espacement."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Tenez les quatre mesures sans arrêt ni changement de tempo."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-02",
+      "order": 2,
+      "category": "beginner",
+      "moduleId": "module-01",
+      "title": "Respecter les silences",
+      "subtitle": "Corde E à vide",
+      "tempo": 60,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "rests",
+        "secondary": [
+          "pulse",
+          "note-control"
+        ]
+      },
+      "prerequisites": [
+        "beginner-01"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Jouer trois pulsations puis laisser la quatrième silencieuse."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Coupez proprement la troisième note avant le silence sans tendre la main."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Le silence doit durer exactement une pulsation, sans note parasite."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Répétez les quatre mesures en conservant des silences réguliers."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-03",
+      "order": 3,
+      "category": "beginner",
+      "moduleId": "module-01",
+      "title": "Changer entre E et A",
+      "subtitle": "Alternance de cordes à vide",
+      "tempo": 64,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "string-crossing",
+        "secondary": [
+          "pulse",
+          "open-strings"
+        ]
+      },
+      "prerequisites": [
+        "beginner-01"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Alterner les cordes E et A sans interrompre la pulsation."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Préparez le changement de corde avant la pulsation suivante."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Les deux cordes doivent conserver le même volume et la même régularité."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Effectuez les quinze changements sans retard ni arrêt."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-04",
+      "order": 4,
+      "category": "beginner",
+      "moduleId": "module-01",
+      "title": "Traverser les quatre cordes",
+      "subtitle": "Montée et retour à vide",
+      "tempo": 66,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "four-string-crossing",
+        "secondary": [
+          "string-identification",
+          "pulse"
+        ]
+      },
+      "prerequisites": [
+        "beginner-03"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Parcourir les quatre cordes puis revenir sans perdre le tempo."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Déplacez la main droite juste assez pour atteindre la corde suivante."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La traversée montante et le retour doivent rester aussi réguliers l’un que l’autre."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez deux cycles complets sans accrocher ni sauter de corde."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 0,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 0,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 0,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 0,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 0,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 0,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-05",
+      "order": 5,
+      "category": "beginner",
+      "moduleId": "module-01",
+      "title": "Premier groove à vide",
+      "subtitle": "Pulsation, silence et changement de corde",
+      "tempo": 68,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "application",
+      "skills": {
+        "primary": "basic-groove",
+        "secondary": [
+          "rests",
+          "string-crossing"
+        ]
+      },
+      "prerequisites": [
+        "beginner-02",
+        "beginner-03"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Assembler pulsation, silences et changements de corde dans un petit groove."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Comptez quatre pulsations par mesure et anticipez le passage sur la corde A."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Le groove doit respirer : ne remplissez pas les silences avec des bruits de corde."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez les deux phrases deux fois avec une pulsation stable."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 5,
+          "durationBeats": 0.5,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 5.5,
+          "durationBeats": 0.5,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 13,
+          "durationBeats": 0.5,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 13.5,
+          "durationBeats": 0.5,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-06",
+      "order": 6,
+      "category": "beginner",
+      "moduleId": "module-02",
+      "title": "Découvrir les premières cases",
+      "subtitle": "Cases 0, 2, 3 et 5 sur E",
+      "tempo": 64,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "single-string-fretting",
+        "secondary": [
+          "fretboard-landmarks",
+          "left-right-coordination"
+        ]
+      },
+      "prerequisites": [
+        "beginner-01"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Repérer et jouer les cases 0, 2, 3 et 5 sur la corde E."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Posez le doigt près de la frette sans écraser inutilement le manche."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Chaque note doit être nette, sans frisement ni coupure prématurée."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Enchaînez quatre fois la série 0–2–3–5 avec un son propre."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-07",
+      "order": 7,
+      "category": "beginner",
+      "moduleId": "module-02",
+      "title": "Reproduire le parcours sur A",
+      "subtitle": "Cases 0, 2, 3 et 5 sur A",
+      "tempo": 66,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "single-string-fretting",
+        "secondary": [
+          "fretboard-transfer",
+          "left-right-coordination"
+        ]
+      },
+      "prerequisites": [
+        "beginner-06"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Retrouver les mêmes repères sur la corde A."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Gardez la même position de main que sur l’exercice précédent."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La corde A doit sonner aussi clairement que la corde E."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez quatre séries sans regarder constamment la main gauche."
+        }
+      ],
+      "events": [
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-08",
+      "order": 8,
+      "category": "beginner",
+      "moduleId": "module-02",
+      "title": "Relier les cordes E et A",
+      "subtitle": "Parcours 0–2–3–5",
+      "tempo": 68,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "position-transfer",
+        "secondary": [
+          "string-crossing",
+          "fretboard-landmarks"
+        ]
+      },
+      "prerequisites": [
+        "beginner-06",
+        "beginner-07"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Enchaîner le même parcours sur les cordes E puis A."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Préparez la corde A pendant la dernière note jouée sur E."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Le changement de corde ne doit créer ni trou ni accent involontaire."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Réalisez deux parcours complets sans rupture de tempo."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 0,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 28,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 0,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-09",
+      "order": 9,
+      "category": "beginner",
+      "moduleId": "module-02",
+      "title": "Rester dans une petite zone",
+      "subtitle": "Cases 2 à 5 sur E et A",
+      "tempo": 70,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "position-stability",
+        "secondary": [
+          "string-crossing",
+          "fretboard-control"
+        ]
+      },
+      "prerequisites": [
+        "beginner-08"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Jouer sur deux cordes sans déplacer inutilement toute la main gauche."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Gardez les doigts proches des cordes et préparez la case suivante."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Les notes doivent rester nettes lorsque la ligne change de corde."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez deux cycles en conservant une position de main stable."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 2,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 30,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 2,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-10",
+      "order": 10,
+      "category": "beginner",
+      "moduleId": "module-02",
+      "title": "Jouer un premier riff",
+      "subtitle": "Cases 3 et 5 sur E et A",
+      "tempo": 72,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "application",
+      "skills": {
+        "primary": "basic-riff",
+        "secondary": [
+          "eighth-notes",
+          "position-stability"
+        ]
+      },
+      "prerequisites": [
+        "beginner-09"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Utiliser les cases 3 et 5 dans une phrase courte et mémorisable."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Travaillez d’abord lentement les deux croches placées au début des phrases."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Le riff doit garder son rebond sans accélérer sur les notes courtes."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez les deux phrases deux fois avec des attaques régulières."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 0.5,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 0.5,
+          "durationBeats": 0.5,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 4,
+          "durationBeats": 0.5,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4.5,
+          "durationBeats": 0.5,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 0.5,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 8.5,
+          "durationBeats": 0.5,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 12,
+          "durationBeats": 0.5,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 12.5,
+          "durationBeats": 0.5,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-11",
+      "order": 11,
+      "category": "beginner",
+      "moduleId": "module-03",
+      "title": "Conserver la même case",
+      "subtitle": "Traversée des quatre cordes à la case 3",
+      "tempo": 72,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "vertical-fretboard-shape",
+        "secondary": [
+          "four-string-crossing",
+          "position-stability"
+        ]
+      },
+      "prerequisites": [
+        "beginner-04",
+        "beginner-09"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Traverser les quatre cordes en restant à la case 3."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Déplacez la main droite entre les cordes sans faire glisser la main gauche."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Chaque corde doit produire une note propre et de même intensité."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Effectuez deux allers-retours complets sans perdre la case 3."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 41,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 3,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 46,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 46,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 3,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 41,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 41,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 3,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 46,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 46,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 3,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 41,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-12",
+      "order": 12,
+      "category": "beginner",
+      "moduleId": "module-03",
+      "title": "Déplacer la forme à la case 5",
+      "subtitle": "Même traversée, nouveau repère",
+      "tempo": 74,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "shape-transfer",
+        "secondary": [
+          "four-string-crossing",
+          "fretboard-landmarks"
+        ]
+      },
+      "prerequisites": [
+        "beginner-11"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Reproduire la traversée précédente autour du repère de case 5."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Repérez d’abord le marqueur de case avant de lancer la lecture."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La nouvelle position doit sonner avec la même assurance que la case 3."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez deux allers-retours sans hésitation sur le placement."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-13",
+      "order": 13,
+      "category": "beginner",
+      "moduleId": "module-03",
+      "title": "Utiliser les repères 3–5–7",
+      "subtitle": "Déplacement horizontal contrôlé",
+      "tempo": 72,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "fretboard-landmarks",
+        "secondary": [
+          "shifting",
+          "string-crossing"
+        ]
+      },
+      "prerequisites": [
+        "beginner-12"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Identifier les repères 3, 5 et 7 et se déplacer entre eux."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Relâchez légèrement la pression pendant le déplacement sans quitter la corde."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Les démanchés ne doivent pas créer de retard ni de glissement sonore involontaire."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Retrouvez chaque repère deux fois sans interrompre la pulsation."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 7,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 7,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 40,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 7,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 35,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 7,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 40,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-14",
+      "order": 14,
+      "category": "beginner",
+      "moduleId": "module-03",
+      "title": "Croiser cordes et cases",
+      "subtitle": "Zone 3–5 sur E et A",
+      "tempo": 76,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "consolidation",
+      "skills": {
+        "primary": "cross-pattern",
+        "secondary": [
+          "position-stability",
+          "string-crossing"
+        ]
+      },
+      "prerequisites": [
+        "beginner-13"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Changer simultanément de corde et de case dans une zone réduite."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Regardez une mesure en avance et préparez mentalement le prochain déplacement."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Chaque changement doit rester fluide, sans accent causé par l’effort."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez deux cycles sans erreur de corde ni de case."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 33,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-15",
+      "order": 15,
+      "category": "beginner",
+      "moduleId": "module-03",
+      "title": "Suivre une diagonale",
+      "subtitle": "Déplacement 3–5–7–9",
+      "tempo": 72,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "application",
+      "skills": {
+        "primary": "diagonal-shifting",
+        "secondary": [
+          "fretboard-landmarks",
+          "four-string-crossing"
+        ]
+      },
+      "prerequisites": [
+        "beginner-13",
+        "beginner-14"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Suivre un déplacement diagonal sur les quatre cordes puis revenir."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Anticipez le déplacement complet plutôt que de chercher chaque note séparément."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La montée et la descente doivent conserver le même débit."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Effectuez deux diagonales complètes sans rupture ni mauvaise corde."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 1,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 9,
+          "startBeat": 3,
+          "durationBeats": 1,
+          "midiNote": 52,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 9,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 52,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 7,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 9,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 9,
+          "startBeat": 11,
+          "durationBeats": 1,
+          "midiNote": 52,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 9,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 52,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-16",
+      "order": 16,
+      "category": "beginner",
+      "moduleId": "module-04",
+      "title": "Tenir les fondamentales",
+      "subtitle": "Progression G–C–D–G",
+      "tempo": 64,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "root-notes",
+        "secondary": [
+          "long-notes",
+          "harmony-following"
+        ]
+      },
+      "prerequisites": [
+        "beginner-08"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Suivre une progression d’accords en jouant uniquement leurs fondamentales."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Laissez chaque note durer quatre pulsations et préparez la suivante sans précipitation."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Écoutez comment une seule note suffit à définir le changement d’accord."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Effectuez les quatre changements au bon moment avec des notes pleinement tenues."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 4,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 4,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 8,
+          "durationBeats": 4,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 4,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-17",
+      "order": 17,
+      "category": "beginner",
+      "moduleId": "module-04",
+      "title": "Ajouter la quinte",
+      "subtitle": "Fondamentale et quinte",
+      "tempo": 68,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "root-fifth",
+        "secondary": [
+          "interval-shape",
+          "harmony-following"
+        ]
+      },
+      "prerequisites": [
+        "beginner-16"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Associer chaque fondamentale à sa quinte pour enrichir la ligne."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Observez la forme régulière : la quinte se trouve sur la corde suivante, deux cases plus loin."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La quinte doit renforcer l’accord sans donner l’impression d’un nouveau départ."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez les quatre paires fondamentale–quinte sans hésitation."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 2,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 2,
+          "durationBeats": 2,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 2,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 2,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 8,
+          "durationBeats": 2,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 10,
+          "durationBeats": 2,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 2,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 2,
+          "midiNote": 38,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-18",
+      "order": 18,
+      "category": "beginner",
+      "moduleId": "module-04",
+      "title": "Ajouter l’octave",
+      "subtitle": "Fondamentale et octave",
+      "tempo": 68,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "discovery",
+      "skills": {
+        "primary": "root-octave",
+        "secondary": [
+          "interval-shape",
+          "string-skipping"
+        ]
+      },
+      "prerequisites": [
+        "beginner-16"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Reconnaître et jouer la forme fondamentale–octave."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Préparez le saut de deux cordes et étouffez la corde intermédiaire."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "L’octave doit sembler prolonger la fondamentale dans un registre plus aigu."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez les quatre paires sans faire résonner de corde intermédiaire."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 2,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 2,
+          "durationBeats": 2,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 2,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 2,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 8,
+          "durationBeats": 2,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 7,
+          "startBeat": 10,
+          "durationBeats": 2,
+          "midiNote": 50,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 2,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 2,
+          "midiNote": 43,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-19",
+      "order": 19,
+      "category": "beginner",
+      "moduleId": "module-04",
+      "title": "Construire un groove simple",
+      "subtitle": "Fondamentale, quinte, octave et silences",
+      "tempo": 72,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "application",
+      "skills": {
+        "primary": "harmonic-groove",
+        "secondary": [
+          "root-fifth",
+          "root-octave",
+          "rests"
+        ]
+      },
+      "prerequisites": [
+        "beginner-17",
+        "beginner-18"
+      ],
+      "difficulty": {
+        "reading": 1,
+        "rhythm": 1,
+        "movement": 1,
+        "technique": 1,
+        "theory": 1,
+        "memory": 1
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Combiner fondamentale, quinte et octave dans un groove de deux accords."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Gardez la fondamentale comme point d’appui et jouez les autres notes plus légèrement."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "Le motif doit rester stable malgré les sauts de corde et les notes courtes."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Jouez les deux phrases deux fois sans perdre la pulsation ni les silences."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 1,
+          "durationBeats": 0.5,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 1.5,
+          "durationBeats": 0.5,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 5,
+          "durationBeats": 0.5,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 5.5,
+          "durationBeats": 0.5,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 6,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 9,
+          "durationBeats": 0.5,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 9.5,
+          "durationBeats": 0.5,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 13,
+          "durationBeats": 0.5,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 13.5,
+          "durationBeats": 0.5,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        }
+      ]
+    },
+    {
+      "id": "beginner-20",
+      "order": 20,
+      "category": "beginner",
+      "moduleId": "module-04",
+      "title": "Morceau-bilan",
+      "subtitle": "Fondations de la basse",
+      "tempo": 76,
+      "timeSignature": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "lengthBeats": 16,
+      "loop": true,
+      "learningType": "challenge",
+      "skills": {
+        "primary": "beginner-synthesis",
+        "secondary": [
+          "pulse",
+          "rests",
+          "shifting",
+          "root-fifth",
+          "root-octave"
+        ]
+      },
+      "prerequisites": [
+        "beginner-05",
+        "beginner-10",
+        "beginner-15",
+        "beginner-19"
+      ],
+      "difficulty": {
+        "reading": 2,
+        "rhythm": 2,
+        "movement": 3,
+        "technique": 2,
+        "theory": 2,
+        "memory": 2
+      },
+      "indications": [
+        {
+          "type": "objective",
+          "label": "OBJECTIF",
+          "text": "Réunir pulsation, déplacements, silences, quinte et octave dans une courte ligne."
+        },
+        {
+          "type": "advice",
+          "label": "CONSEIL",
+          "text": "Repérez les quatre mesures avant de jouer et ne sacrifiez pas le tempo à la vitesse."
+        },
+        {
+          "type": "listenFor",
+          "label": "À ÉCOUTER",
+          "text": "La ligne doit former une phrase continue avec une fin clairement identifiable."
+        },
+        {
+          "type": "success",
+          "label": "RÉUSSITE",
+          "text": "Terminez deux lectures complètes sans arrêt, avec un son propre et un tempo stable."
+        }
+      ],
+      "events": [
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 0,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 1,
+          "durationBeats": 0.5,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 1.5,
+          "durationBeats": 0.5,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 2,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 3,
+          "startBeat": 4,
+          "durationBeats": 1,
+          "midiNote": 36,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 5,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 5,
+          "startBeat": 6,
+          "durationBeats": 0.5,
+          "midiNote": 48,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 6.5,
+          "durationBeats": 0.5,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 8,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 7,
+          "startBeat": 9,
+          "durationBeats": 0.5,
+          "midiNote": 45,
+          "velocity": 90
+        },
+        {
+          "string": "G",
+          "fret": 7,
+          "startBeat": 9.5,
+          "durationBeats": 0.5,
+          "midiNote": 50,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 10,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 12,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        },
+        {
+          "string": "A",
+          "fret": 5,
+          "startBeat": 13,
+          "durationBeats": 1,
+          "midiNote": 38,
+          "velocity": 90
+        },
+        {
+          "string": "D",
+          "fret": 5,
+          "startBeat": 14,
+          "durationBeats": 1,
+          "midiNote": 43,
+          "velocity": 90
+        },
+        {
+          "string": "E",
+          "fret": 3,
+          "startBeat": 15,
+          "durationBeats": 1,
+          "midiNote": 31,
+          "velocity": 90
+        }
+      ]
+    }
+  ]
+}

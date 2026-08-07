@@ -1,1 +1,5 @@
-export { bassExerciseCategories, bassExercises } from "./bassExerciseLibrary";
+export {
+  bassBeginnerModules,
+  bassExerciseCategories,
+  bassExercises,
+} from "./bassExerciseLibrary";
