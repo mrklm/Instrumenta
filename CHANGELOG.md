@@ -2,6 +2,12 @@
 
 Toutes les évolutions notables d'Instrumenta sont listées ici.
 
+## [1.6.2] - 2026-08-08
+
+### Modifié
+- Adaptation des indications de mains en mode gaucher.
+- Affichage temporaire des valeurs au centre des potentiomètres pendant leur manipulation.
+
 ## [1.6.1] - 2026-08-07
 
 ### Ajouté

@@ -7,10 +7,12 @@ import {
   useState,
 } from "react";
 import type { BassExercise, ExerciseIndication } from "../../types/music";
+import type { Handedness } from "../../types/music";
 import "./ExerciseTicker.css";
 
 interface ExerciseTickerProps {
   exercise: BassExercise;
+  handedness: Handedness;
 }
 
 const TICKER_PIXELS_PER_SECOND = 52.27;
@@ -20,7 +22,7 @@ const TICKER_START_DELAY_MS = 10_000;
 const MIN_SPEED_MULTIPLIER = 0.5;
 const MAX_SPEED_MULTIPLIER = 3.5;
 
-export function ExerciseTicker({ exercise }: ExerciseTickerProps) {
+export function ExerciseTicker({ exercise, handedness }: ExerciseTickerProps) {
   const containerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -36,8 +38,8 @@ export function ExerciseTicker({ exercise }: ExerciseTickerProps) {
     MIN_INITIAL_SCROLL_DURATION_SECONDS,
   );
   const tickerText = useMemo(
-    () => getExerciseTickerText(exercise),
-    [exercise],
+    () => getExerciseTickerText(exercise, handedness),
+    [exercise, handedness],
   );
   const speedMultiplier = getSpeedMultiplier(speedPercent);
 
@@ -161,18 +163,25 @@ function getSpeedMultiplier(speedPercent: number): number {
   );
 }
 
-function getExerciseTickerText(exercise: BassExercise): string {
+export function getExerciseTickerText(
+  exercise: BassExercise,
+  handedness: Handedness,
+): string {
   const orderedIndications = getOrderedIndications(exercise);
 
   if (orderedIndications.length === 0) {
-    return exercise.subtitle
+    const fallbackText = exercise.subtitle
       ? `${exercise.title} ◆ ${exercise.subtitle}`
       : exercise.title;
+
+    return adaptHandednessText(fallbackText, handedness);
   }
 
-  return orderedIndications
+  const text = orderedIndications
     .map((indication) => `${indication.label} — ${indication.text}`)
     .join(" ◆ ");
+
+  return adaptHandednessText(text, handedness);
 }
 
 function getOrderedIndications(exercise: BassExercise): ExerciseIndication[] {
@@ -183,4 +192,21 @@ function getOrderedIndications(exercise: BassExercise): ExerciseIndication[] {
   return exercise.indicationDisplayOrder.flatMap((type) =>
     exercise.indications?.filter((indication) => indication.type === type) ?? [],
   );
+}
+
+function adaptHandednessText(text: string, handedness: Handedness): string {
+  if (handedness === "right") {
+    return text;
+  }
+
+  return text
+    .replace(/main gauche/g, "__MAIN_GAUCHE__")
+    .replace(/main droite/g, "main gauche")
+    .replace(/__MAIN_GAUCHE__/g, "main droite")
+    .replace(/Main gauche/g, "__MAIN_GAUCHE_CAP__")
+    .replace(/Main droite/g, "Main gauche")
+    .replace(/__MAIN_GAUCHE_CAP__/g, "Main droite")
+    .replace(/MAIN GAUCHE/g, "__MAIN_GAUCHE_UP__")
+    .replace(/MAIN DROITE/g, "MAIN GAUCHE")
+    .replace(/__MAIN_GAUCHE_UP__/g, "MAIN DROITE");
 }

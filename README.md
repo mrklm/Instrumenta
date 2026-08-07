@@ -67,6 +67,6 @@ npm run build
 
 ## Version
 
-Version actuelle : `1.6.1`
+Version actuelle : `1.6.2`
 
 Les évolutions sont listées dans [CHANGELOG.md](CHANGELOG.md).

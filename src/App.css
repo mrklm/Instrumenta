@@ -294,6 +294,28 @@
   transform: translateX(-50%);
 }
 
+.tempoKnobValue {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  transform: rotate(calc(-1 * var(--tempo-knob-rotation)));
+  transition: opacity 120ms ease;
+}
+
+.tempoKnob:hover .tempoKnobValue,
+.tempoKnob:focus-within .tempoKnobValue,
+.tempoKnob:active .tempoKnobValue {
+  opacity: 1;
+}
+
 .tempoKnobLabel {
   color: color-mix(in srgb, var(--color-fg), transparent 18%);
   font-size: var(--text-caption-size);
@@ -457,6 +479,29 @@
   border-radius: 999px;
   background: var(--color-accent);
   transform: translateX(-50%);
+}
+
+.metronomeKnobValue {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  transform: rotate(calc(-1 * var(--metronome-knob-rotation)));
+  transition: opacity 120ms ease;
+}
+
+.metronomeKnob:hover .metronomeKnobValue,
+.metronomeKnob:focus-within .metronomeKnobValue,
+.metronomeKnob:active .metronomeKnobValue {
+  opacity: 1;
 }
 
 .metronomeKnob strong {

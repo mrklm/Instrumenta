@@ -383,9 +383,12 @@ function App() {
             onChange={(event) =>
               handleTempoChange(Number(event.currentTarget.value))
             }
+            onDoubleClick={() => handleTempoChange(currentExercise.tempo)}
           />
           <span
             className="tempoKnobFace"
+            title="Double-clic : tempo de l'exercice"
+            onDoubleClick={() => handleTempoChange(currentExercise.tempo)}
             style={
               {
                 "--tempo-knob-rotation": `${tempoRotation}deg`,
@@ -393,6 +396,7 @@ function App() {
             }
           >
             <span className="tempoKnobIndicator" />
+            <span className="tempoKnobValue">{tempo}</span>
           </span>
           <span className="tempoKnobLabel">Tempo</span>
           <strong>{tempo} BPM</strong>
@@ -462,9 +466,12 @@ function App() {
               onChange={(event) =>
                 setMetronomeVolume(Number(event.currentTarget.value))
               }
+              onDoubleClick={() => setMetronomeVolume(70)}
             />
             <span
               className="metronomeKnobFace"
+              title="Double-clic : valeur d'origine"
+              onDoubleClick={() => setMetronomeVolume(70)}
               style={
                 {
                   "--metronome-knob-rotation": `${metronomeVolumeRotation}deg`,
@@ -472,6 +479,7 @@ function App() {
               }
             >
               <span className="metronomeKnobIndicator" />
+              <span className="metronomeKnobValue">{metronomeVolume}%</span>
             </span>
             <span>Volume</span>
             <strong>{metronomeVolume}%</strong>
@@ -499,6 +507,7 @@ function App() {
         <BassSoundControls
           presetName={BASS_SOUND_PRESETS[bassSoundPresetIndex].name}
           settings={bassSoundSettings}
+          defaultSettings={BASS_SOUND_PRESETS[bassSoundPresetIndex].settings}
           onSettingsChange={setBassSoundSettings}
           onPreviousPreset={() => selectBassSoundPreset(bassSoundPresetIndex - 1)}
           onNextPreset={() => selectBassSoundPreset(bassSoundPresetIndex + 1)}
@@ -548,7 +557,7 @@ function App() {
         fretCount={FRET_COUNT}
       />
 
-      <ExerciseTicker exercise={currentExercise} />
+      <ExerciseTicker exercise={currentExercise} handedness={handedness} />
 
       <BassTablature
         exercise={currentExercise}

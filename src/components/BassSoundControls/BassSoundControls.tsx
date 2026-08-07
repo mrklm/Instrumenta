@@ -5,6 +5,7 @@ import "./BassSoundControls.css";
 interface BassSoundControlsProps {
   presetName: string;
   settings: BassSoundSettings;
+  defaultSettings: BassSoundSettings;
   onSettingsChange: (settings: BassSoundSettings) => void;
   onPreviousPreset: () => void;
   onNextPreset: () => void;
@@ -29,6 +30,7 @@ const effectKnobLabels: Record<BassEffectKnobKey, string> = {
 export function BassSoundControls({
   presetName,
   settings,
+  defaultSettings,
   onSettingsChange,
   onPreviousPreset,
   onNextPreset,
@@ -44,7 +46,7 @@ export function BassSoundControls({
     <div className="bassSoundStack" aria-label="Réglages du son de basse">
       <section className="bassSoundDock">
         <div className="bassSoundKnobs">
-          {renderKnobs(toneKnobLabels, settings, updateKnob)}
+          {renderKnobs(toneKnobLabels, settings, defaultSettings, updateKnob)}
         </div>
 
         <div className="presetStepper">
@@ -62,7 +64,7 @@ export function BassSoundControls({
 
       <section className="bassSoundDock bassEffectsDock" aria-label="Effets de basse">
         <div className="bassSoundKnobs">
-          {renderKnobs(effectKnobLabels, settings, updateKnob)}
+          {renderKnobs(effectKnobLabels, settings, defaultSettings, updateKnob)}
         </div>
       </section>
     </div>
@@ -72,10 +74,16 @@ export function BassSoundControls({
 function renderKnobs<T extends KnobKey>(
   labels: Record<T, string>,
   settings: BassSoundSettings,
+  defaultSettings: BassSoundSettings,
   onChange: (key: T, value: number) => void,
 ) {
   return (Object.keys(labels) as T[]).map((key) => (
-    <label className="rotaryKnob" key={key}>
+    <label
+      className="rotaryKnob"
+      key={key}
+      onDoubleClick={() => onChange(key, defaultSettings[key])}
+      title="Double-clic : valeur d'origine"
+    >
       <span>{labels[key]}</span>
       <span
         className="knobFace"
@@ -86,6 +94,7 @@ function renderKnobs<T extends KnobKey>(
         }
       >
         <span className="knobIndicator" />
+        <span className="knobValue">{settings[key]}%</span>
       </span>
       <input
         type="range"
@@ -94,6 +103,7 @@ function renderKnobs<T extends KnobKey>(
         value={settings[key]}
         aria-label={labels[key]}
         onChange={(event) => onChange(key, Number(event.currentTarget.value))}
+        onDoubleClick={() => onChange(key, defaultSettings[key])}
       />
     </label>
   ));
