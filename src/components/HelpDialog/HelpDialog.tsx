@@ -111,11 +111,6 @@ export function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
         </header>
 
         <div className="helpContent" tabIndex={0} aria-label="Contenu de l'aide, zone défilante">
-          <p className="helpIntro">
-            Faites défiler cette fenêtre avec la molette, le trackpad ou le
-            curseur vertical à droite pour parcourir toute l'aide.
-          </p>
-
           {sections.map((section, sectionIndex) => (
             <section key={section.id} id={`help-${section.id}`}>
               <h3>
