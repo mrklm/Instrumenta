@@ -5,10 +5,9 @@ import type { AudioEngine } from "./AudioEngine";
 
 interface PlayingVoice {
   oscillator: OscillatorNode;
-  filter: BiquadFilterNode;
-  driveShaper: WaveShaperNode;
-  distortionShaper: WaveShaperNode;
+  harmonicOscillator: OscillatorNode;
   gain: GainNode;
+  velocity: number;
 }
 
 interface EffectNodes {
@@ -27,6 +26,7 @@ export class SimpleBassSynth implements AudioEngine {
   private audioContext: AudioContext | null = null;
   private effectNodes: EffectNodes | null = null;
   private readonly voices = new Map<string, PlayingVoice>();
+  private previewNoteId = 0;
   private settings: BassSoundSettings = {
     volume: 72,
     tone: 38,
@@ -43,16 +43,34 @@ export class SimpleBassSynth implements AudioEngine {
       return;
     }
 
-    const now = this.audioContext.currentTime;
-    this.updateEffectNodes(now);
-
-    for (const voice of this.voices.values()) {
-      voice.filter.frequency.setTargetAtTime(this.getToneFrequency(), now, 0.02);
-      voice.filter.Q.setTargetAtTime(this.getFilterQ(), now, 0.02);
-      voice.driveShaper.curve = this.createDriveCurve();
-      voice.distortionShaper.curve = this.createDistortionCurve();
-      voice.oscillator.type = this.getOscillatorType();
+    if (this.settings.volume <= 0) {
+      this.stopAll();
+      return;
     }
+
+    this.updateEffectNodes(this.audioContext.currentTime);
+    this.updateVoiceGains(this.audioContext.currentTime);
+  }
+
+  public enable(): void {
+    this.getContext();
+  }
+
+  public playPreviewNote(): void {
+    const eventId = `bass-preview-${this.previewNoteId}`;
+    this.previewNoteId += 1;
+
+    this.playNote({
+      id: eventId,
+      startBeat: 0,
+      durationBeats: 0.5,
+      string: "A",
+      fret: 7,
+      midiNote: 40,
+      velocity: 1,
+    });
+
+    window.setTimeout(() => this.stopNote(eventId), 320);
   }
 
   public playNote(event: BassNoteEvent): void {
@@ -60,48 +78,51 @@ export class SimpleBassSynth implements AudioEngine {
       return;
     }
 
+    const outputGain = this.getOutputGain();
+
+    if (outputGain <= 0) {
+      return;
+    }
+
     const context = this.getContext();
-    const oscillator = context.createOscillator();
-    const filter = context.createBiquadFilter();
-    const driveShaper = context.createWaveShaper();
-    const distortionShaper = context.createWaveShaper();
-    const gain = context.createGain();
     const now = context.currentTime;
-    const velocity = event.velocity ?? 0.74;
+    const frequency = midiNoteToFrequency(event.midiNote);
+    const velocity = event.velocity ?? 0.8;
+    const oscillator = context.createOscillator();
+    const harmonicOscillator = context.createOscillator();
+    const filter = context.createBiquadFilter();
+    const drive = context.createWaveShaper();
+    const gain = context.createGain();
 
     this.updateEffectNodes(now);
+
     oscillator.type = this.getOscillatorType();
-    oscillator.frequency.setValueAtTime(midiNoteToFrequency(event.midiNote), now);
+    oscillator.frequency.setValueAtTime(frequency, now);
+    harmonicOscillator.type = "triangle";
+    harmonicOscillator.frequency.setValueAtTime(frequency * 2, now);
     filter.type = "lowpass";
     filter.frequency.setValueAtTime(this.getToneFrequency(), now);
-    filter.Q.setValueAtTime(this.getFilterQ(), now);
-    driveShaper.curve = this.createDriveCurve();
-    driveShaper.oversample = "2x";
-    distortionShaper.curve = this.createDistortionCurve();
-    distortionShaper.oversample = "4x";
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(
-      this.getOutputGain() * velocity,
-      now + 0.018,
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      this.getOutputGain() * 0.58 * velocity,
-      now + 0.16,
-    );
+    filter.Q.setValueAtTime(0.75 + this.settings.drive / 140, now);
+    drive.curve = this.createDriveCurve();
+    drive.oversample = "2x";
 
-    oscillator.connect(driveShaper);
-    driveShaper.connect(filter);
-    filter.connect(distortionShaper);
-    distortionShaper.connect(gain);
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(outputGain * velocity, now + 0.012);
+    gain.gain.linearRampToValueAtTime(outputGain * 0.64 * velocity, now + 0.18);
+
+    oscillator.connect(filter);
+    harmonicOscillator.connect(filter);
+    filter.connect(drive);
+    drive.connect(gain);
     gain.connect(this.getEffectNodes(context).master);
     oscillator.start(now);
+    harmonicOscillator.start(now);
 
     this.voices.set(event.id, {
       oscillator,
-      filter,
-      driveShaper,
-      distortionShaper,
+      harmonicOscillator,
       gain,
+      velocity,
     });
   }
 
@@ -114,9 +135,10 @@ export class SimpleBassSynth implements AudioEngine {
 
     const now = this.audioContext.currentTime;
     voice.gain.gain.cancelScheduledValues(now);
-    voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0.0001), now);
-    voice.gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
-    voice.oscillator.stop(now + 0.06);
+    voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0), now);
+    voice.gain.gain.linearRampToValueAtTime(0, now + 0.05);
+    voice.oscillator.stop(now + 0.07);
+    voice.harmonicOscillator.stop(now + 0.07);
     this.voices.delete(eventId);
   }
 
@@ -130,48 +152,67 @@ export class SimpleBassSynth implements AudioEngine {
 
   public releaseAll(): void {
     for (const voice of this.voices.values()) {
-      if (this.audioContext) {
-        const now = this.audioContext.currentTime;
-        voice.gain.gain.cancelScheduledValues(now);
-        voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0.0001), now);
-        voice.gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
-        voice.oscillator.stop(now + 0.04);
+      if (!this.audioContext) {
+        continue;
       }
+
+      const now = this.audioContext.currentTime;
+      voice.gain.gain.cancelScheduledValues(now);
+      voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0), now);
+      voice.gain.gain.linearRampToValueAtTime(0, now + 0.035);
+      voice.oscillator.stop(now + 0.05);
+      voice.harmonicOscillator.stop(now + 0.05);
     }
 
     this.voices.clear();
   }
 
   private getContext(): AudioContext {
-    if (this.audioContext) {
-      return this.audioContext;
+    if (!this.audioContext) {
+      this.audioContext = new AudioContext();
+      this.effectNodes = this.createEffectNodes(this.audioContext);
+      this.updateEffectNodes(this.audioContext.currentTime);
     }
 
-    this.audioContext = new AudioContext();
-    this.effectNodes = this.createEffectNodes(this.audioContext);
-    this.updateEffectNodes(this.audioContext.currentTime);
+    if (this.audioContext.state === "suspended") {
+      this.audioContext.resume().catch(() => undefined);
+    }
+
     return this.audioContext;
   }
 
   private getToneFrequency(): number {
-    return 250 + this.settings.tone * 52;
+    return 900 + this.settings.tone * 44;
   }
 
   private getOutputGain(): number {
-    return 0.045 + this.settings.volume * 0.0017;
+    if (this.settings.volume <= 0) {
+      return 0;
+    }
+
+    return this.settings.volume * 0.0036;
   }
 
-  private getFilterQ(): number {
-    return 0.7 + this.settings.drive / 120;
+  private updateVoiceGains(now: number): void {
+    const outputGain = this.getOutputGain();
+
+    for (const voice of this.voices.values()) {
+      voice.gain.gain.cancelScheduledValues(now);
+      voice.gain.gain.setValueAtTime(Math.max(voice.gain.gain.value, 0), now);
+      voice.gain.gain.linearRampToValueAtTime(
+        outputGain * 0.64 * voice.velocity,
+        now + 0.035,
+      );
+    }
   }
 
   private getOscillatorType(): OscillatorType {
-    if (this.settings.tone <= 14 && this.settings.drive <= 8) {
-      return "triangle";
+    if (this.settings.drive >= 45 || this.settings.distortion >= 24) {
+      return "sawtooth";
     }
 
-    if (this.settings.drive >= 34) {
-      return "sawtooth";
+    if (this.settings.tone <= 18) {
+      return "triangle";
     }
 
     return "square";
@@ -182,27 +223,11 @@ export class SimpleBassSynth implements AudioEngine {
     const curve = new Float32Array(
       new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT),
     );
-    const amount = 1 + this.settings.drive * 0.2;
+    const amount = 1 + this.settings.drive * 0.18 + this.settings.distortion * 0.32;
 
     for (let index = 0; index < samples; index += 1) {
       const x = (index * 2) / samples - 1;
-      curve[index] = ((1 + amount) * x) / (1 + amount * Math.abs(x));
-    }
-
-    return curve;
-  }
-
-  private createDistortionCurve(): Float32Array<ArrayBuffer> {
-    const samples = 256;
-    const curve = new Float32Array(
-      new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT),
-    );
-    const amount = this.settings.distortion / 100;
-
-    for (let index = 0; index < samples; index += 1) {
-      const x = (index * 2) / samples - 1;
-      const saturated = Math.tanh(x * (1 + amount * 30));
-      curve[index] = x * (1 - amount) + saturated * amount;
+      curve[index] = Math.tanh(x * amount);
     }
 
     return curve;
@@ -297,12 +322,12 @@ export class SimpleBassSynth implements AudioEngine {
       0.025,
     );
     this.effectNodes.reverbSend.gain.setTargetAtTime(
-      reverbAmount * 1.45,
+      reverbAmount * 1.2,
       now,
       0.025,
     );
     this.effectNodes.reverbWet.gain.setTargetAtTime(
-      reverbAmount * 0.85,
+      reverbAmount * 0.7,
       now,
       0.025,
     );

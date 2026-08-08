@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 import type { BassSoundSettings } from "../../audio/bassSoundPresets";
 import "./BassSoundControls.css";
 
@@ -81,7 +81,11 @@ function renderKnobs<T extends KnobKey>(
     <label
       className="rotaryKnob"
       key={key}
-      onDoubleClick={() => onChange(key, defaultSettings[key])}
+      onDoubleClickCapture={(event: MouseEvent<HTMLLabelElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onChange(key, defaultSettings[key]);
+      }}
       title="Double-clic : valeur d'origine"
     >
       <span>{labels[key]}</span>
@@ -103,7 +107,6 @@ function renderKnobs<T extends KnobKey>(
         value={settings[key]}
         aria-label={labels[key]}
         onChange={(event) => onChange(key, Number(event.currentTarget.value))}
-        onDoubleClick={() => onChange(key, defaultSettings[key])}
       />
     </label>
   ));

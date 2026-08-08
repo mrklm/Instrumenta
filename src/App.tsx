@@ -34,6 +34,11 @@ import type { Handedness } from "./types/music";
 import "./App.css";
 
 const FRET_COUNT = 12;
+const DEFAULT_BASS_KNOB_SETTINGS = {
+  volume: 50,
+  tone: 0,
+  drive: 10,
+} as const;
 
 const getExerciseSignature = (exercise: typeof bassExercises[number]) =>
   `${exercise.id}:${exercise.title}:${exercise.events
@@ -151,8 +156,17 @@ function App() {
   }, [snapshot.status]);
 
   useEffect(() => {
-    if (!soundEnabled || snapshot.status !== "playing") {
+    if (!soundEnabled) {
       synth.stopAll();
+      activeSoundIdsRef.current.clear();
+      return;
+    }
+
+    if (snapshot.status !== "playing") {
+      for (const eventId of activeSoundIdsRef.current) {
+        synth.stopNote(eventId);
+      }
+
       activeSoundIdsRef.current.clear();
       return;
     }
@@ -200,6 +214,10 @@ function App() {
   ]);
 
   const handlePlay = () => {
+    if (soundEnabled) {
+      synth.enable();
+    }
+
     if (metronomeEnabled) {
       metronome.enable();
     }
@@ -227,7 +245,10 @@ function App() {
   const handleSoundEnabledChange = (enabled: boolean) => {
     setSoundEnabled(enabled);
 
-    if (!enabled) {
+    if (enabled) {
+      synth.enable();
+      synth.playPreviewNote();
+    } else {
       synth.stopAll();
       activeSoundIdsRef.current.clear();
     }
@@ -257,13 +278,21 @@ function App() {
         lastMetronomeBeatRef.current = null;
         setSnapshot(playbackEngineRef.current.stop());
       } else {
+        if (soundEnabled) {
+          synth.enable();
+        }
+
+        if (metronomeEnabled) {
+          metronome.enable();
+        }
+
         setSnapshot(playbackEngineRef.current.play());
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [synth]);
+  }, [metronome, metronomeEnabled, soundEnabled, synth]);
 
   const selectExercise = (nextIndex: number) => {
     const normalizedIndex =
@@ -373,7 +402,14 @@ function App() {
       </nav>
 
       <div className="tempoDock">
-        <label className="tempoKnob">
+        <label
+          className="tempoKnob"
+          onDoubleClickCapture={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            handleTempoChange(currentExercise.tempo);
+          }}
+        >
           <input
             type="range"
             min="40"
@@ -383,12 +419,10 @@ function App() {
             onChange={(event) =>
               handleTempoChange(Number(event.currentTarget.value))
             }
-            onDoubleClick={() => handleTempoChange(currentExercise.tempo)}
           />
           <span
             className="tempoKnobFace"
             title="Double-clic : tempo de l'exercice"
-            onDoubleClick={() => handleTempoChange(currentExercise.tempo)}
             style={
               {
                 "--tempo-knob-rotation": `${tempoRotation}deg`,
@@ -456,7 +490,14 @@ function App() {
             </button>
           </div>
 
-          <label className="metronomeKnob">
+          <label
+            className="metronomeKnob"
+            onDoubleClickCapture={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              setMetronomeVolume(70);
+            }}
+          >
             <input
               type="range"
               min="0"
@@ -466,12 +507,10 @@ function App() {
               onChange={(event) =>
                 setMetronomeVolume(Number(event.currentTarget.value))
               }
-              onDoubleClick={() => setMetronomeVolume(70)}
             />
             <span
               className="metronomeKnobFace"
               title="Double-clic : valeur d'origine"
-              onDoubleClick={() => setMetronomeVolume(70)}
               style={
                 {
                   "--metronome-knob-rotation": `${metronomeVolumeRotation}deg`,
@@ -507,7 +546,10 @@ function App() {
         <BassSoundControls
           presetName={BASS_SOUND_PRESETS[bassSoundPresetIndex].name}
           settings={bassSoundSettings}
-          defaultSettings={BASS_SOUND_PRESETS[bassSoundPresetIndex].settings}
+          defaultSettings={{
+            ...BASS_SOUND_PRESETS[bassSoundPresetIndex].settings,
+            ...DEFAULT_BASS_KNOB_SETTINGS,
+          }}
           onSettingsChange={setBassSoundSettings}
           onPreviousPreset={() => selectBassSoundPreset(bassSoundPresetIndex - 1)}
           onNextPreset={() => selectBassSoundPreset(bassSoundPresetIndex + 1)}
